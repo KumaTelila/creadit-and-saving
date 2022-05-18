@@ -27,7 +27,11 @@ if (isset($_POST['submit'])) {
                 $iquery = "INSERT INTO accounts (username, password, is_accountant) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-            } else {
+            }else if ($usertype == 'admin') {
+                $iquery = "INSERT INTO accounts (username, password, is_admin) VALUES ('$username','$password', TRUE)";
+                $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+                $msg = "Succeesfully Registered";
+            }else {
                 $msg = "Something Wrong";
             }
         }
@@ -91,6 +95,8 @@ if (isset($_POST['submit'])) {
                                                     <option value="manager">Manager</option>
                                                     <option value="commite">Commite</option>
                                                     <option value="accountant">Accountant</option>
+                                                    <option value="admin">Admin</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -123,38 +129,34 @@ if (isset($_POST['submit'])) {
                                                 ?>
                                                 <?php
                                                 while ($rows = mysqli_fetch_assoc($result)) {
-                                                    if($rows['is_admin']=='1'){
+                                                   
+                                                    if ($rows['is_admin'] == '1') {
                                                         $type = "Admin";
-                                                    }else if($rows['is_manager']=='1'){
+                                                    } else if ($rows['is_manager'] == '1') {
                                                         $type = "Manager";
-                                                    }else if($rows['is_accountant']=='1'){
+                                                    } else if ($rows['is_accountant'] == '1') {
                                                         $type = "Accountant";
-                                                    }else if($rows['is_commite']=='1'){
+                                                    } else if ($rows['is_commite'] == '1') {
                                                         $type = "Commite";
                                                     }
                                                 ?>
-                                               
+
                                                     <tr>
                                                         <td><?php echo $rows['id']; ?></td>
                                                         <td><?php echo $rows['username']; ?></td>
                                                         <td><?php echo $type; ?></td>
                                                         <td>
-                                                        <a href="#">
-                                                            <button class="btn btn-primary btn-xs modal_edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="#">
-                                                            <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete this User');">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="#">
-                                                            <button class="btn btn-info btn-xs modal_edit">
-                                                                <i class="fa fa-eye"></i>
-                                                            </button>
-                                                        </a>
-                                                    </td>
+                                                            <a href="#">
+                                                                <button class="btn btn-primary btn-xs modal_edit">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                            </a>
+                                                            <a href="functions/delete.php">
+                                                                <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete this User');">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 <?php
                                                 }
