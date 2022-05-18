@@ -9,19 +9,30 @@ if (isset($_POST['submit'])) {
 
     // $selectu = mysqli_query($conn, "SELECT * FROM student WHERE uname = '$uname'") or die("echo 'could not connect to table';");
     // $duchk = mysqli_num_rows($selectu);
-    if ($usertype == 'manager') {
-        $iquery = "INSERT INTO accounts (username, password, is_manager) VALUES ('$username','$password', TRUE)";
-    } else if ($usertype == 'commite') {
-        $iquery = "INSERT INTO accounts (username, password,is_commite) VALUES ('$username','$password', TRUE)";
-    } else if ($usertype == 'accountant') {
-        $iquery = "INSERT INTO accounts (username, password, is_accountant) VALUES ('$username','$password', TRUE)";
-    }
-    $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
-    if ($insert) {
-        header('location: create-account.php');
-        $msg = "Successfully Created";
-    }else{
-        $msg ="Something wrong";
+    if (!empty($username) && !empty($password) && !is_numeric($username)) {
+        $selectu = mysqli_query($conn, "SELECT * FROM accounts WHERE username = '$username'") or die("echo 'could not connect to table';");
+        $duchk = mysqli_num_rows($selectu);
+        if ($duchk != 0) {
+            $msg = "username already exist please try another";
+        } else {
+            if ($usertype == 'manager') {
+                $iquery = "INSERT INTO accounts (username, password, is_manager) VALUES ('$username','$password', TRUE)";
+                $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+                $msg = "Succeesfully Registered";
+            } else if ($usertype == 'commite') {
+                $iquery = "INSERT INTO accounts (username, password,is_commite) VALUES ('$username','$password', TRUE)";
+                $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+                $msg = "Succeesfully Registered";
+            } else if ($usertype == 'accountant') {
+                $iquery = "INSERT INTO accounts (username, password, is_accountant) VALUES ('$username','$password', TRUE)";
+                $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+                $msg = "Succeesfully Registered";
+            } else {
+                $msg = "Something Wrong";
+            }
+        }
+    } else {
+        $msg = "please insert correct value";
     }
 }
 ?>
@@ -49,15 +60,16 @@ if (isset($_POST['submit'])) {
                             <div class="card card-info">
                                 <div class="card-header">
                                     <h3 class="card-title">Create Account</h3>
+                                    <?php if (isset($msg) && $msg != "Succeesfully Registered") : ?>
+                                        <div class="alert alert-danger">
+                                            <h5> <i class="icon fas fa-ban"></i> <?php echo $msg; ?></h5>
+                                        </div>
+                                    <?php elseif (isset($msg) && $msg == "Succeesfully Registered") : ?>
+                                        <div class="alert alert-success">
+                                            <h5> <i class="icon fas fa-check"></i> <?php echo $msg; ?></h5>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
-                                <!-- /.card-header -->
-                                <?php if (isset($msg)) : ?>
-                                    <div class="alert alert-danger">
-                                        <h5> <i class="icon fas fa-ban"></i> <?php echo $msg; ?></h5>
-                                    </div>
-                                <?php endif ?>
-
-                                <!-- form start -->
                                 <form class="form-horizontal" method="POST" action="">
                                     <div class="card-body">
                                         <div class="form-group row">
@@ -104,11 +116,29 @@ if (isset($_POST['submit'])) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">1</td>
-                                                    <td style="text-transform: capitalize;">kxkx</td>
-                                                    <td class="text-success">manager</td>
-                                                    <td>
+                                                <?php
+                                                include './connect.php';
+                                                $sql =  "select *from accounts";
+                                                $result = mysqli_query($conn, $sql);
+                                                ?>
+                                                <?php
+                                                while ($rows = mysqli_fetch_assoc($result)) {
+                                                    if($rows['is_admin']=='1'){
+                                                        $type = "Admin";
+                                                    }else if($rows['is_manager']=='1'){
+                                                        $type = "Manager";
+                                                    }else if($rows['is_accountant']=='1'){
+                                                        $type = "Accountant";
+                                                    }else if($rows['is_commite']=='1'){
+                                                        $type = "Commite";
+                                                    }
+                                                ?>
+                                               
+                                                    <tr>
+                                                        <td><?php echo $rows['id']; ?></td>
+                                                        <td><?php echo $rows['username']; ?></td>
+                                                        <td><?php echo $type; ?></td>
+                                                        <td>
                                                         <a href="class.php?id=1002">
                                                             <button class="btn btn-primary btn-xs modal_edit">
                                                                 <i class="fa fa-edit"></i>
@@ -125,51 +155,10 @@ if (isset($_POST['submit'])) {
                                                             </button>
                                                         </a>
                                                     </td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">2</td>
-                                                    <td style="text-transform: capitalize;">kxkx</td>
-                                                    <td class="text-success">manager</td>
-                                                    <td>
-                                                        <a href="class.php?id=1001">
-                                                            <button class="btn btn-primary btn-xs modal_edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="class.php?delete=1001">
-                                                            <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete A/Oromo Class');">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="class.php?view=1001">
-                                                            <button class="btn btn-info btn-xs modal_edit">
-                                                                <i class="fa fa-eye"></i>
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">3</td>
-                                                    <td style="text-transform: capitalize;">kxkx</td>
-                                                    <td class="text-success">manager</td>
-                                                    <td>
-                                                        <a href="class.php?id=1000">
-                                                            <button class="btn btn-primary btn-xs modal_edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="class.php?delete=1000">
-                                                            <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete Amharic Class');">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="class.php?view=1000">
-                                                            <button class="btn btn-info btn-xs modal_edit">
-                                                                <i class="fa fa-eye"></i>
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>

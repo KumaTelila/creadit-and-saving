@@ -64,7 +64,7 @@ $conn->close();
                         </div>
                         <div class="form-group text-left"><button type="submit" name="submit" id="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt mr-2"></i>Login</button></div>
                     </form>
-                    <p class="mt-4 text-left"><a href="/forgot_password">Forgot Password ?</a></p>
+                    <p class="mt-4 text-left"><a href="#">Forgot Password ?</a></p>
                 </div>
             </div>
         </div>
