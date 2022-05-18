@@ -139,17 +139,17 @@ if (isset($_POST['submit'])) {
                                                         <td><?php echo $rows['username']; ?></td>
                                                         <td><?php echo $type; ?></td>
                                                         <td>
-                                                        <a href="class.php?id=1002">
+                                                        <a href="#">
                                                             <button class="btn btn-primary btn-xs modal_edit">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="class.php?delete=1002">
-                                                            <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete A/oromo');">
+                                                        <a href="#">
+                                                            <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete this User');">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="class.php?view=1002">
+                                                        <a href="#">
                                                             <button class="btn btn-info btn-xs modal_edit">
                                                                 <i class="fa fa-eye"></i>
                                                             </button>
