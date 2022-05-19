@@ -1,7 +1,7 @@
 <?php
- if(! isset($_SESSION['customer_id'])){
-    header('location: index.php');
- }
+//  if(! isset($_SESSION['customer_id'])){
+//     header('location: index.php');
+//  }
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -18,7 +18,7 @@
                             <p class="text-info nav-link">Metemamen Micro Finance institution</p>
                         </li>
                         <li class="nav-item">
-                            <a href="costumer-profile.php" class="nav-link">
+                            <a href="customer-profile.php" class="nav-link">
                                 <i class="nav-icon fas fa-user-alt"></i>
                                 <p>
                                     My Profile

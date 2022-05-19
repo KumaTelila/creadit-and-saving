@@ -10,7 +10,7 @@
     <?php include 'inc/nav.php'; ?>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-      <? include 'inc/side.php'; ?>
+      <?php include 'inc/side.php'; ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Main content -->
