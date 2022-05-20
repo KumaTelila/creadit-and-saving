@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_id'])) {
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    !-- Brand Logo -->
+    <!-- Brand Logo -->
     <a class="brand-link text-center" href="#"><img src="dist/img/Osu.jpeg" alt="AdminLTE Logo" class="img-circle" width="40%"></a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -46,18 +46,18 @@ if (!isset($_SESSION['admin_id'])) {
                                 <p>Backup Database</p>
                             </a>
                         </li>
-                        
+
 
                     </ul>
                 </li>
                 <li class="nav-item">
-                            <a href="view-feedback.php" class="nav-link">
-                                <i class="nav-icon fas fa-newspaper"></i>
-                                <p>
-                                View Feedback
-                                </p>
-                            </a>
-                        </li>
+                    <a href="view-feedback.php" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            View Feedback
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

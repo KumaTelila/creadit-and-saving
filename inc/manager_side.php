@@ -1,0 +1,85 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+   <!-- Brand Logo -->
+    <a class="brand-link text-center" href="#"><img src="dist/img/Osu.jpeg" alt="AdminLTE Logo" class="img-circle" width="40%"></a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="dist/img/avatar2.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Manager</a>
+            </div>
+        </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-alt"></i>
+                                <p>
+                                    Update Profile
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="view-employee.php" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    View Employes
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="view-customer.php" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    View Customers
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-dollar-sign"></i>
+                                <p>
+                                   Respond Loan Requests
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="post-news.php" class="nav-link">
+                                <i class="nav-icon fas fa-bullhorn"></i>
+                                <p>
+                                    Post News
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    View Report
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                    <a href="view-feedback-mngr.php" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            View Feedback
+                        </p>
+                    </a>
+                </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+
+            <!-- /.sidebar -->
+        </aside>
