@@ -1,7 +1,7 @@
 <?php
- if(! isset($_SESSION['admin_id'])){
+if (!isset($_SESSION['admin_id'])) {
     header('location: index.php');
- }
+}
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -18,8 +18,6 @@
                 <a href="#" class="d-block">Admin</a>
             </div>
         </div>
-
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -48,9 +46,18 @@
                                 <p>Backup Database</p>
                             </a>
                         </li>
+                        
 
                     </ul>
                 </li>
+                <li class="nav-item">
+                            <a href="view-feedback.php" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>
+                                View Feedback
+                                </p>
+                            </a>
+                        </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
