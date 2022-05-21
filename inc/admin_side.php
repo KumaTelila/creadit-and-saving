@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['admin_id'])) {
-    header('location: index.php');
+   header('location: index.php');
 }
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -15,7 +15,10 @@ if (!isset($_SESSION['admin_id'])) {
                 <img src="dist/img/avatar2.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="admin.php" class="d-block">Admin</a>
+            </div>
+            <div class="info">
+                <a href="admin.php" class="d-block">Home</a>
             </div>
         </div>
         <!-- Sidebar Menu -->

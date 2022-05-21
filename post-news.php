@@ -1,21 +1,18 @@
 <?php
 session_start();
 include 'connect.php';
-
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
     $desc = $_POST['desc'];
     if (!empty($title) && !empty($desc)) {
-        $iquery = "INSERT INTO news (title, description) VALUES ('$title','$desc')";
+        $iquery = "INSERT INTO news (title, description, man_id) VALUES ('$title','$desc', 19)";
         $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
         $msg = "Succeesfully Posted";
     } else {
         $msg = "Something error";
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'inc/header.php'; ?>

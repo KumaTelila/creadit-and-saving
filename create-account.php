@@ -19,19 +19,33 @@ if (isset($_POST['submit'])) {
                 $iquery = "INSERT INTO accounts (username, password, is_manager) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-            } else if ($usertype == 'commite') {
-                $iquery = "INSERT INTO accounts (username, password,is_commite) VALUES ('$username','$password', TRUE)";
-                $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
-                $msg = "Succeesfully Registered";
-            } else if ($usertype == 'accountant') {
+                $qu = "select *from accounts where username = '$username'";
+                $res = mysqli_query($conn, $qu) or die(mysqli_error($conn));
+                $row1 = mysqli_fetch_assoc($res);
+                $acc_id = $row1['id'];
+                $iquery1 = "INSERT INTO users (username, password, acc_id, role) VALUES ('$username','$password', '$acc_id', 'manager's)";
+                mysqli_query($conn, $iquery1) or  die(mysqli_error($conn));
+            }else if ($usertype == 'accountant') {
                 $iquery = "INSERT INTO accounts (username, password, is_accountant) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-            }else if ($usertype == 'admin') {
+                $qu = "select *from accounts where username = '$username'";
+                $res = mysqli_query($conn, $qu) or die(mysqli_error($conn));
+                $row1 = mysqli_fetch_assoc($res);
+                $acc_id = $row1['id'];
+                $iquery1 = "INSERT INTO users (username, password, acc_id, role) VALUES ('$username','$password', '$acc_id','accountat')";
+                mysqli_query($conn, $iquery1) or  die(mysqli_error($conn));
+            } else if ($usertype == 'admin') {
                 $iquery = "INSERT INTO accounts (username, password, is_admin) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-            }else {
+                $qu = "select *from accounts where username = '$username'";
+                $res = mysqli_query($conn, $qu) or die(mysqli_error($conn));
+                $row1 = mysqli_fetch_assoc($res);
+                $acc_id = $row1['id'];
+                $iquery1 = "INSERT INTO users (username, password, acc_id, role) VALUES ('$username','$password', '$acc_id', 'admin')";
+                mysqli_query($conn, $iquery1) or  die(mysqli_error($conn));
+            } else {
                 $msg = "Something Wrong";
             }
         }
@@ -126,10 +140,14 @@ if (isset($_POST['submit'])) {
                                                 include './connect.php';
                                                 $sql =  "select *from accounts";
                                                 $result = mysqli_query($conn, $sql);
+                                                $no = 0;
                                                 ?>
                                                 <?php
                                                 while ($rows = mysqli_fetch_assoc($result)) {
-                                                   
+                                                    $no++;
+                                                    if ($rows['is_customer'] == '1') {
+                                                        continue;
+                                                    }
                                                     if ($rows['is_admin'] == '1') {
                                                         $type = "Admin";
                                                     } else if ($rows['is_manager'] == '1') {
@@ -140,19 +158,18 @@ if (isset($_POST['submit'])) {
                                                         $type = "Commite";
                                                     }
                                                 ?>
-
                                                     <tr>
-                                                        <td><?php echo $rows['id']; ?></td>
+                                                        <td><?php echo $no; ?></td>
                                                         <td><?php echo $rows['username']; ?></td>
                                                         <td><?php echo $type; ?></td>
                                                         <td>
-                                                            <a href="#">
+                                                            <a href="/functions/delete.php">
                                                                 <button class="btn btn-primary btn-xs modal_edit">
                                                                     <i class="fa fa-edit"></i>
                                                                 </button>
                                                             </a>
-                                                            <a href="functions/delete.php">
-                                                                <button class="btn btn-danger btn-xs modal_edit" onclick="return confirm('Are You Sure You Went To Delete this User');">
+                                                            <a href="#">
+                                                                <button class="btn btn-danger btn-xs modal_edit" name="button" value="button" onclick="return confirm('Are You Sure You Went To Delete this User');">
                                                                     <i class="fa fa-trash"></i>
                                                                 </button>
                                                             </a>
