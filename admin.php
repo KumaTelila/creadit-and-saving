@@ -1,5 +1,32 @@
 <?php
 session_start();
+include 'connect.php';
+$sql = "Select * from accounts";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+  $is_m = 0;
+  $is_a = 0;
+  $is_c = 0;
+  $is_cu = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $is_manager = $row['is_manager'];
+        $is_admin = $row['is_admin'];
+        $is_accountant = $row['is_accountant'];
+        $is_customer = $row['is_customer'];
+        if($is_manager == 1){
+            $is_m ++;
+        }
+        if($is_admin == 1){
+            $is_a ++;
+        }
+        if($is_accountant == 1){
+            $is_c ++;
+        }
+        if($is_customer == 1){
+            $is_cu ++;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +65,11 @@ session_start();
         <div class="container-fluid">
           <!-- Info boxes -->
           <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3><?php echo $is_cu ?></h3>
 
                   <p>Customers</p>
                 </div>
@@ -53,11 +80,11 @@ session_start();
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px"></sup></h3>
+                  <h3><?php echo $is_c?><sup style="font-size: 20px"></sup></h3>
 
                   <p>Accountant</p>
                 </div>
@@ -68,28 +95,14 @@ session_start();
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>44</h3>
-
-                  <p>Commites</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-user-cog"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
+                  <h3><?php echo $is_m?></h3>
 
-                  <p>Mnagers</p>
+                  <p>Managers</p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-user-cog"></i>

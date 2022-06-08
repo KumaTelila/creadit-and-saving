@@ -42,12 +42,15 @@ session_start();
                                             <tbody>
                                                 <?php
                                                 include './connect.php';
-                                                $sql =  "select *from customer";
+                                                $sql =  "select *from users";
                                                 $result = mysqli_query($conn, $sql);
                                                 $no =0;
                                                 ?>
                                                 <?php
                                                 while ($rows = mysqli_fetch_assoc($result)) {
+                                                    if($rows['role']!=='customer'){
+                                                        continue;
+                                                    }
                                                    $no++;
                                                 ?>
 

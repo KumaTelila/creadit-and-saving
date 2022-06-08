@@ -1,7 +1,12 @@
 <?php
 if (!isset($_SESSION['admin_id'])) {
-   header('location: index.php');
+    header('location: index.php');
 }
+include 'connect.php';
+$admin_id = $_SESSION['admin_id'];
+$sql = "SELECT * FROM accounts WHERE id = '$admin_id'";
+$query = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($query);
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -15,7 +20,7 @@ if (!isset($_SESSION['admin_id'])) {
                 <img src="dist/img/avatar2.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="admin.php" class="d-block">Admin</a>
+            <a href="#" class="d-block"><?php echo $row['username'] ?></a>
             </div>
             <div class="info">
                 <a href="admin.php" class="d-block">Home</a>

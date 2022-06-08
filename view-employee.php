@@ -47,7 +47,9 @@ session_start();
                                                 ?>
                                                 <?php
                                                 while ($rows = mysqli_fetch_assoc($result)) {
-                                                    if($rows['role']!=='customer')
+                                                    if($rows['role']=='customer'){
+                                                        continue;
+                                                    }
                                                    $no++;
                                                 ?>
 

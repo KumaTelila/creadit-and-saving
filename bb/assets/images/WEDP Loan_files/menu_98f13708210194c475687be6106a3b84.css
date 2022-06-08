@@ -1,0 +1,9 @@
+#menu_item_menu- {
+  background-color: #fff;
+}
+#menu_item_menu- ul.navbar-nav > li > a, #menu_item_menu- ul.navbar-nav > li > span.nav-header {
+  font-size: 18px;
+}
+#menu_item_menu- ul.dropdown-menu li a, #menu_item_menu- ul.sunfw-megamenu-sub-menu li a, #menu_item_menu- .modulecontainer ul.nav-child li a, #menu_item_menu- ul.dropdown-menu li span.nav-header, #menu_item_menu- ul.sunfw-megamenu-sub-menu li span.nav-header, #menu_item_menu- .modulecontainer ul.nav-child li span.nav-header {
+  font-size: 15px;
+}

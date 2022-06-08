@@ -19,38 +19,29 @@ if (isset($_POST['submit'])) {
                 $iquery = "INSERT INTO accounts (username, password, is_manager) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-                $qu = "select *from accounts where username = '$username'";
-                $res = mysqli_query($conn, $qu) or die(mysqli_error($conn));
-                $row1 = mysqli_fetch_assoc($res);
-                $acc_id = $row1['id'];
-                $iquery1 = "INSERT INTO users (username, password, acc_id, role) VALUES ('$username','$password', '$acc_id', 'manager's)";
-                mysqli_query($conn, $iquery1) or  die(mysqli_error($conn));
-            }else if ($usertype == 'accountant') {
+            } else if ($usertype == 'accountant') {
                 $iquery = "INSERT INTO accounts (username, password, is_accountant) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-                $qu = "select *from accounts where username = '$username'";
-                $res = mysqli_query($conn, $qu) or die(mysqli_error($conn));
-                $row1 = mysqli_fetch_assoc($res);
-                $acc_id = $row1['id'];
-                $iquery1 = "INSERT INTO users (username, password, acc_id, role) VALUES ('$username','$password', '$acc_id','accountat')";
-                mysqli_query($conn, $iquery1) or  die(mysqli_error($conn));
             } else if ($usertype == 'admin') {
                 $iquery = "INSERT INTO accounts (username, password, is_admin) VALUES ('$username','$password', TRUE)";
                 $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
                 $msg = "Succeesfully Registered";
-                $qu = "select *from accounts where username = '$username'";
-                $res = mysqli_query($conn, $qu) or die(mysqli_error($conn));
-                $row1 = mysqli_fetch_assoc($res);
-                $acc_id = $row1['id'];
-                $iquery1 = "INSERT INTO users (username, password, acc_id, role) VALUES ('$username','$password', '$acc_id', 'admin')";
-                mysqli_query($conn, $iquery1) or  die(mysqli_error($conn));
             } else {
                 $msg = "Something Wrong";
             }
         }
     } else {
         $msg = "please insert correct value";
+    }
+}
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $sql = "Delete from accounts where id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        echo "<script>alert('Deleted Successfully')</script>";
+        echo "<script>window.location.replace('create-account.php')</script>";
     }
 }
 ?>
@@ -64,7 +55,6 @@ if (isset($_POST['submit'])) {
         <!-- Navbar -->
         <?php include 'inc/nav.php'; ?>
         <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         <?php include 'inc/admin_side.php'; ?>
         <!-- Content Wrapper. Contains page content -->
@@ -83,6 +73,10 @@ if (isset($_POST['submit'])) {
                                             <h5> <i class="icon fas fa-ban"></i> <?php echo $msg; ?></h5>
                                         </div>
                                     <?php elseif (isset($msg) && $msg == "Succeesfully Registered") : ?>
+                                        <div class="alert alert-success">
+                                            <h5> <i class="icon fas fa-check"></i> <?php echo $msg; ?></h5>
+                                        </div>
+                                        <?php elseif (isset($msg) && $msg == "Deleted Successfully") : ?>
                                         <div class="alert alert-success">
                                             <h5> <i class="icon fas fa-check"></i> <?php echo $msg; ?></h5>
                                         </div>
@@ -107,7 +101,6 @@ if (isset($_POST['submit'])) {
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="user_type" id="user_type">
                                                     <option value="manager">Manager</option>
-                                                    <option value="commite">Commite</option>
                                                     <option value="accountant">Accountant</option>
                                                     <option value="admin">Admin</option>
 
@@ -130,6 +123,8 @@ if (isset($_POST['submit'])) {
                                             <thead>
                                                 <tr role="row">
                                                     <th style="width: 122.5521px;" class="sorting_asc" tabindex="0" aria-controls="table_stud" rowspan="1" colspan="1" aria-sort="ascending" aria-label="No.: activate to sort column descending">No.</th>
+                                                    <th style="width: 122.5521px;" class="sorting_asc" tabindex="0" aria-controls="table_stud" rowspan="1" colspan="1" aria-sort="ascending" aria-label="No.: activate to sort column descending">Id</th>
+
                                                     <th class="sorting" tabindex="0" aria-controls="table_stud" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 397.691px;">Username</th>
                                                     <th class="sorting" tabindex="0" aria-controls="table_stud" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 407.188px;">User Type</th>
                                                     <th class="sorting" tabindex="0" aria-controls="table_stud" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 244.201px;">Action</th>
@@ -137,46 +132,39 @@ if (isset($_POST['submit'])) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                include './connect.php';
-                                                $sql =  "select *from accounts";
-                                                $result = mysqli_query($conn, $sql);
-                                                $no = 0;
-                                                ?>
-                                                <?php
-                                                while ($rows = mysqli_fetch_assoc($result)) {
-                                                    $no++;
-                                                    if ($rows['is_customer'] == '1') {
-                                                        continue;
+                                              
+                                                function view(){
+                                                    global $conn;
+                                                     $admin_id=$_SESSION['admin_id'];
+                                                    $query = "SELECT * FROM accounts";
+                                                    $res = mysqli_query($conn, $query);
+                                                    $i = 1;
+                                                    while ($row = mysqli_fetch_assoc($res)) {
+                                                        $id = $row['id'];
+                                                        if($id==$admin_id){
+                                                            continue;
+                                                        }
+                                                        $username = $row['username'];
+                                                        if($row['is_manager'] == '1'){
+                                                            $user_type = 'Manager';
+                                                        }elseif($row['is_accountant'] == '1'){
+                                                            $user_type = 'Accountant';
+                                                        }elseif($row['is_admin'] == '1'){
+                                                            $user_type = 'Admin';
+                                                        }else{
+                                                            continue;
+                                                        }
+                                                        echo "<tr>";
+                                                        echo "<td>$i</td>";
+                                                        echo "<td>$id</td>";
+                                                        echo "<td>$username</td>";
+                                                        echo "<td>$user_type</td>";
+                                                        echo "<td><a href='#' class='btn btn-info'>Edit</a> <a href='create-account.php?id=$id' class='btn btn-danger'>Delete</a></td>";
+                                                        echo "</tr>";
+                                                        $i++;
                                                     }
-                                                    if ($rows['is_admin'] == '1') {
-                                                        $type = "Admin";
-                                                    } else if ($rows['is_manager'] == '1') {
-                                                        $type = "Manager";
-                                                    } else if ($rows['is_accountant'] == '1') {
-                                                        $type = "Accountant";
-                                                    } else if ($rows['is_commite'] == '1') {
-                                                        $type = "Commite";
-                                                    }
-                                                ?>
-                                                    <tr>
-                                                        <td><?php echo $no; ?></td>
-                                                        <td><?php echo $rows['username']; ?></td>
-                                                        <td><?php echo $type; ?></td>
-                                                        <td>
-                                                            <a href="/functions/delete.php">
-                                                                <button class="btn btn-primary btn-xs modal_edit">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </button>
-                                                            </a>
-                                                            <a href="#">
-                                                                <button class="btn btn-danger btn-xs modal_edit" name="button" value="button" onclick="return confirm('Are You Sure You Went To Delete this User');">
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                <?php
                                                 }
+                                                view();
                                                 ?>
                                             </tbody>
                                         </table>

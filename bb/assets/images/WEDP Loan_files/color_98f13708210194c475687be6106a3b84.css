@@ -1,0 +1,53 @@
+/* ============================ */
+@media (min-width: 768px) {
+  .main-menu ul.sunfw-tpl-menu > li.active::before, .main-menu ul.sunfw-tpl-menu > li:hover::before {
+    background: #ff6c00;
+  }
+  .main-menu ul.sunfw-tpl-menu > li.megamenu ul.sunfw-megamenu-sub-menu .modulecontainer h3 {
+    background-color: #ff6c00;
+  }
+}
+.link-action:hover {
+  background: #994100;
+}
+.pagination > .active > a, .pagination > .active > span {
+  background-color: #ff6c00;
+  border-color: #ff6c00;
+}
+.pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #ff6c00;
+  border-color: #ff6c00;
+}
+div#es .mentions textarea, .region-properties a, .color_default, [id^="jsn-themeslider-skitter-"] .label_skitter p.jsn-themeslider-caption-title, .line-title span, .ngm-thumb .price, .sunfw-switcher a.btn.active, .sunfw-switcher a.btn:active, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .menu.menu-sidemenu li.active > a, .menu.menu-sidemenu li.current > a, .menu.menu-sidemenu li:hover > a, a, .headTitle .moduleItemTitle, .text-orange, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .kfrontend .btn-link, .jsn-error-page .goto-home a {
+  color: #ff6c00;
+}
+.popular-article .popular-content .popular-bottom .btn-readmore:hover, .search-block, .ngm-row .appear .ngm-thumb .mask .main-bottom .col-bottom .btn-readmore:hover, .sw-change-color picture img, .block-article:hover .block-image .like, .cal_td_dayshasevents, .progress-bar, a.bd_color_default:hover, .jomres_property_list_propertywrapper input[type="checkbox"]:checked, .block-readmore:hover {
+  background-color: #ff6c00;
+}
+div.k2TagCloudBlock a:hover {
+  background: #ff6c00;
+}
+.btn.button-outline-inverse {
+  background: #ff6c00;
+}
+.btn.button-outline-inverse:hover {
+  color: #ff6c00;
+}
+.btn.btn-outline {
+  color: #ff6c00;
+  border-color: #ff6c00;
+}
+.btn.btn-outline:hover {
+  background: #ff6c00;
+}
+.home-subscribe .form-actions .btn {
+  background-color: #ff6c00 !important;
+  border-color: #ff6c00 !important;
+}
+.bd_color_default {
+  border-color: #ff6c00 !important;
+}
+.block-readmore:hover a, .block-readmore a:hover {
+  background-color: #ff6c00;
+}
+/* ============================ Sub Color ============================ */
