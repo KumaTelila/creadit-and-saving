@@ -31,16 +31,37 @@ $row = mysqli_fetch_assoc($query);
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="create-account.php" class="nav-link">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-alt"></i>
                         <p>
                             Manage Account
                         </p>
                     </a>
+                    <ul class="nav nav-treeview pl-3">
+                        <li class="nav-item">
+                            <a href="admin.php?createAccount" class="nav-link <?php if (isset($_GET['createAccount'])) {
+                                                                                    echo 'active';
+                                                                                } ?>">
+                                <i class="fas fa-tasks"></i>
+                                <p>Create Account</p>
+                            </a>
+                        </li>
+                    </ul>
+                    </a>
+                    <ul class="nav nav-treeview pl-3">
+                        <li class="nav-item">
+                            <a href="admin.php?userList" class="nav-link <?php if (isset($_GET['userList'])) {
+                                                                                    echo 'active';
+                                                                                } ?>">
+                                <i class="fas fa-tasks"></i>
+                                <p>User List</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
                             Manage Database
@@ -48,18 +69,20 @@ $row = mysqli_fetch_assoc($query);
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item pl-3">
+                            <a href="admin.php?backupDatabase" class="nav-link <?php if (isset($_GET['backupDatabase'])) {
+                                                                                    echo 'active';
+                                                                                } ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Backup Database</p>
                             </a>
                         </li>
-
-
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="view-feedback.php" class="nav-link">
+                    <a href="admin.php?viewFeedback" class="nav-link <?php if (isset($_GET['viewFeedback'])) {
+                                                                                    echo 'active';
+                                                                                } ?>">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             View Feedback

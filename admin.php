@@ -27,8 +27,49 @@ if (mysqli_num_rows($result) > 0) {
         }
     }
 }
-?>
+if (isset($_POST['submit'])) {
+  $username = $_POST['username'];
+  $password = md5($_POST['password']);
+  $usertype = $_POST['user_type'];
 
+  // $selectu = mysqli_query($conn, "SELECT * FROM student WHERE uname = '$uname'") or die("echo 'could not connect to table';");
+  // $duchk = mysqli_num_rows($selectu);
+  if (!empty($username) && !empty($password) && !is_numeric($username)) {
+      $selectu = mysqli_query($conn, "SELECT * FROM accounts WHERE username = '$username'") or die("echo 'could not connect to table';");
+      $duchk = mysqli_num_rows($selectu);
+      if ($duchk != 0) {
+          $msg = "username already exist please try another";
+      } else {
+          if ($usertype == 'manager') {
+              $iquery = "INSERT INTO accounts (username, password, is_manager) VALUES ('$username','$password', TRUE)";
+              $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+              $msg = "Succeesfully Registered";
+          } else if ($usertype == 'accountant') {
+              $iquery = "INSERT INTO accounts (username, password, is_accountant) VALUES ('$username','$password', TRUE)";
+              $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+              $msg = "Succeesfully Registered";
+          } else if ($usertype == 'admin') {
+              $iquery = "INSERT INTO accounts (username, password, is_admin) VALUES ('$username','$password', TRUE)";
+              $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
+              $msg = "Succeesfully Registered";
+          } else {
+              $msg = "Something Wrong";
+          }
+      }
+  } else {
+      $msg = "please insert correct value";
+  }
+}
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+  $sql = "Delete from accounts where id = '$id'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+      echo "<script>alert('Deleted Successfully')</script>";
+      echo "<script>window.location.replace('create-account.php')</script>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'inc/header.php'; ?>
@@ -37,94 +78,27 @@ if (mysqli_num_rows($result) > 0) {
   <div class="wrapper">
     <!-- Navbar -->
     <?php include 'inc/nav.php'; ?>
-    <!-- /.navbar -->
-    <!-- Main Sidebar Container -->
     <?php include 'inc/admin_side.php'; ?>
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Dashboard </h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Info boxes -->
-          <div class="row">
-            <div class="col-lg-4 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3><?php echo $is_cu ?></h3>
-
-                  <p>Customers</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-user-cog"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-4 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3><?php echo $is_c?><sup style="font-size: 20px"></sup></h3>
-
-                  <p>Accountant</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-user-cog"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <!-- ./col -->
-            <div class="col-lg-4 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3><?php echo $is_m?></h3>
-
-                  <p>Managers</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-user-cog"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!--/. container-fluid -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+  <?php
+    if (
+            isset($_GET['createAccount']) || isset($_GET['userList']) || isset($_GET['backupDatabase']) || isset($_GET['viewFeedback']) 
+        ) {
+            if (isset($_GET['createAccount'])) {
+                include './view/create-account.php';
+            }
+            if(isset($_GET['userList'])){
+                include './view/user-list.php';
+            }
+            if(isset($_GET['backupDatabase'])){
+                include './view/backup-database.php';
+            }
+            if(isset($_GET['viewFeedback'])){
+                include './view/view-feedback.php';
+            }
+        } else {
+            include './inc/admin_body.php';
+        }
+        ?>
   </div>
   <?php include 'inc/js.php'; ?>
 </body>

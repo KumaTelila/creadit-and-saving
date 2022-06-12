@@ -1,20 +1,4 @@
-<?php 
-session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<?php include 'inc/header.php'; ?>
-
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        <!-- Navbar -->
-        <?php include 'inc/nav.php'; ?>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <?php include 'inc/admin_side.php'; ?>
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+<div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <!-- Main content -->
             <section class="content">
@@ -90,15 +74,3 @@ session_start();
             </section>
             <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-    </div>
-    <?php include 'inc/js.php'; ?>
-</body>
-
-</html>
