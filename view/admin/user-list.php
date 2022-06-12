@@ -54,7 +54,7 @@
                                                 echo "<td>$id</td>";
                                                 echo "<td>$username</td>";
                                                 echo "<td>$user_type</td>";
-                                                echo "<td><a href='#' class='btn btn-info'>Edit</a> <a href='create-account.php?id=$id' class='btn btn-danger'>Delete</a></td>";
+                                                echo "<td><a href='create-account.php?id=$id' class='btn btn-danger'>Delete</a></td>";
                                                 echo "</tr>";
                                                 $i++;
                                             }

@@ -31,9 +31,6 @@ if (isset($_POST['submit'])) {
   $username = $_POST['username'];
   $password = md5($_POST['password']);
   $usertype = $_POST['user_type'];
-
-  // $selectu = mysqli_query($conn, "SELECT * FROM student WHERE uname = '$uname'") or die("echo 'could not connect to table';");
-  // $duchk = mysqli_num_rows($selectu);
   if (!empty($username) && !empty($password) && !is_numeric($username)) {
       $selectu = mysqli_query($conn, "SELECT * FROM accounts WHERE username = '$username'") or die("echo 'could not connect to table';");
       $duchk = mysqli_num_rows($selectu);
@@ -66,7 +63,7 @@ if(isset($_GET['id'])){
   $result = mysqli_query($conn, $sql);
   if($result){
       echo "<script>alert('Deleted Successfully')</script>";
-      echo "<script>window.location.replace('create-account.php')</script>";
+      echo "<script>window.location.replace('admin.php')</script>";
   }
 }
 ?>
@@ -84,16 +81,16 @@ if(isset($_GET['id'])){
             isset($_GET['createAccount']) || isset($_GET['userList']) || isset($_GET['backupDatabase']) || isset($_GET['viewFeedback']) 
         ) {
             if (isset($_GET['createAccount'])) {
-                include './view/create-account.php';
+                include './view/admin/create-account.php';
             }
             if(isset($_GET['userList'])){
-                include './view/user-list.php';
+                include './view/admin/user-list.php';
             }
             if(isset($_GET['backupDatabase'])){
-                include './view/backup-database.php';
+                include './view/admin/backup-database.php';
             }
             if(isset($_GET['viewFeedback'])){
-                include './view/view-feedback.php';
+                include './view/admin/view-feedback.php';
             }
         } else {
             include './inc/admin_body.php';
