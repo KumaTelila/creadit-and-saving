@@ -11,20 +11,12 @@ $row = mysqli_fetch_assoc($query);
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <!-- Brand Logo -->
-    <a class="brand-link text-center" href="#"><img src="dist/img/Osu.jpeg" alt="AdminLTE Logo" class="img-circle" width="40%"></a>
+    <a class="brand-link text-center" href="admin.php"><img src="dist/img/Osu.jpeg" alt="AdminLTE Logo" class="img-circle" width="40%"></a>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="dist/img/avatar2.png" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-            <a href="#" class="d-block"><?php echo $row['username'] ?></a>
-            </div>
-            <div class="info">
-                <a href="admin.php" class="d-block">Home</a>
-            </div>
+        <h2><a href="admin.php" class="d-block pl-3">Admin Page</a></h2>
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">

@@ -73,7 +73,7 @@ https://templatemo.com/tm-545-finance-business
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home
+              <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -91,6 +91,9 @@ https://templatemo.com/tm-545-finance-business
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="customer_registration.php">Register</a>
             </li>
           </ul>
         </div>

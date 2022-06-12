@@ -37,9 +37,7 @@
                                                         $type = "Manager";
                                                     } else if ($rows['is_accountant'] == '1') {
                                                         $type = "Accountant";
-                                                    } else if ($rows['is_commite'] == '1') {
-                                                        $type = "Commite";
-                                                    }
+                                                    } 
                                                 ?>
 
                                                     <tr>

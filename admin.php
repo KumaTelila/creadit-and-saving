@@ -63,7 +63,7 @@ if(isset($_GET['id'])){
   $result = mysqli_query($conn, $sql);
   if($result){
       echo "<script>alert('Deleted Successfully')</script>";
-      echo "<script>window.location.replace('admin.php')</script>";
+      echo "<script>window.location.replace('admin.php?userList')</script>";
   }
 }
 ?>
