@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <!-- Brand Logo -->
-    <a class="brand-link text-center" href="admin.php"><img src="dist/img/Osu.jpeg" alt="AdminLTE Logo" class="img-circle" width="40%"></a>
+    <a class="brand-link text-center" href="admin.php"><img src="dist/img/rsz_logo.png" alt="Logo" class="img-circle" width="40%"></a>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
