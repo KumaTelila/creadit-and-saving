@@ -87,7 +87,7 @@ https://templatemo.com/tm-545-finance-business
               <a class="nav-link" href="bb/contact.html">Contact Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">News</a>
+              <a class="nav-link" href="bb/news.php">News</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login.php">Login</a>
