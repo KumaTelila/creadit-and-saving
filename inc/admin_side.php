@@ -1,13 +1,3 @@
-<?php
-if (!isset($_SESSION['admin_id'])) {
-    header('location: index.php');
-}
-include 'connect.php';
-$admin_id = $_SESSION['admin_id'];
-$sql = "SELECT * FROM accounts WHERE id = '$admin_id'";
-$query = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($query);
-?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <!-- Brand Logo -->

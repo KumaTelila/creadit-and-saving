@@ -1,34 +1,23 @@
 <?php
+session_start();
 include 'connect.php';
+$id = $_SESSION['admin_id'];
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $email = $_POST['email'];
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $gender  = $_POST['gender'];
     $profile = $_POST['profile'];
-    if (!empty($username) && !empty($password) && !empty($profile) && !empty($phone) && is_numeric($phone) && !is_numeric($username)  && !is_numeric($name)) {
-        $selectu = mysqli_query($conn, "SELECT * FROM `accounts` WHERE `username` = '$username'");
+    if (!empty($email) && !empty($profile) && !empty($phone) && is_numeric($phone)  && !is_numeric($name)) {
+        $selectu = mysqli_query($conn, "SELECT * FROM `employer` WHERE `email` = '$email'");
         $duchk = mysqli_num_rows($selectu);
         if ($duchk != 0) {
-            $msg = "username already exist please try another";
+            $msg = "email already exist please try another";
         } else {
-            $iquery1 = "INSERT INTO accounts (username,	password,  is_customer) VALUES (  '$username','$password', TRUE)";
+            $iquery1 = "UPDATE `employer` SET `name`='$name',`gender`='$gender',`phone`='$phone',`email`='$email',`photo`='$profile' WHERE `acc_id`= $id";
             if (mysqli_query($conn, $iquery1)) {
-                $sql3 = "SELECT * FROM `accounts` WHERE `username` = '$username'";
-                $query = mysqli_query($conn, $sql3);
-                $row = mysqli_fetch_array($query);
-                $acc_id = $row['id'];
-                $sql4 = "INSERT INTO `customer`(`acc_id`, `name`, `gender`, `phone`,   `photo`) 
-                VALUES ('$acc_id','$name','$gender',' $phone', 'photo')";
-                if (mysqli_query($conn, $sql4)) {
-                    echo "<script>alert('Succeesfully Registered')</script>";
-                    echo "<script>window.location.replace('login.php')</script>";
-                    $msg = "Succeesfully Registered";
-
-                } else {
-                    $msg = "Error  " . mysqli_error($conn);
-                }
+                echo "<script>alert('Succeesfully Registered')</script>";
+                echo "<script>window.location.replace('accountant.php')</script>";
             } else {
                 $msg = "something went wrong";
             }
@@ -40,7 +29,6 @@ if (isset($_POST['submit'])) {
 ?>
 <html lang="en">
 <?php include 'inc/header.php'; ?>
-
 <body class="register-page">
     <div class="register-box" style="width: 460px">
         <div class="register-logo">
@@ -58,7 +46,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 <?php endif ?>
                 <div class="card-header">
-                    <h3 class="card-title">Register Here</h3>
+                    <h3 class="card-title">Please Fill All Information To get Access</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -67,7 +55,7 @@ if (isset($_POST['submit'])) {
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Full name">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Full name" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelectRounded0">Gender</label>
@@ -77,16 +65,12 @@ if (isset($_POST['submit'])) {
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="username">
+                                <label>email</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="email" required>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
                             </div>
                             <div class="form-group">
                                 <label>Profile Picture </label>

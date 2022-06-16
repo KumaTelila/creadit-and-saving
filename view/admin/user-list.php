@@ -30,7 +30,7 @@
                                         function view()
                                         {
                                             global $conn;
-                                            $admin_id = $_SESSION['admin_id'];
+                                            $admin_id = $_SESSION['id'];
                                             $query = "SELECT * FROM accounts";
                                             $res = mysqli_query($conn, $query);
                                             $i = 1;

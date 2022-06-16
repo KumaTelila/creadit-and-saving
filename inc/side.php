@@ -18,17 +18,7 @@
                                                                         } ?>">
                         <i class="nav-icon fas fa-user-alt"></i>
                         <p>
-                            My Profile
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="customer.php?records" class="nav-link <?php if (isset($_GET['records'])) {
-                                                                        echo 'active';
-                                                                    } ?>">
-                        <i class="nav-icon fas fa-newspaper"></i>
-                        <p>
-                           Transaction Log
+                           Update Profile 
                         </p>
                     </a>
                 </li>

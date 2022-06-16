@@ -5,15 +5,8 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="dist/img/avatar2.png" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="accountant.php" class="d-block">Accountant</a>
-            </div>
-            <div class="info">
-                <a href="accountant.php" class="d-block">Home</a>
-            </div>
+        <h2><a href="accountant.php" class="d-block pl-3">Accountant Page</a></h2>
+
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -34,17 +27,7 @@
                                                 } ?>">
                         <i class="nav-icon fas fa-user-alt"></i>
                         <p>
-                            My Profile
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="accountant.php?notification" class="nav-link <?php if (isset($_GET['notification'])) {
-                                                    echo 'active';
-                                                } ?>">
-                        <i class="nav-icon fas fa-bullhorn"></i>
-                        <p>
-                            Notifications
+                            Update Account
                         </p>
                     </a>
                 </li>

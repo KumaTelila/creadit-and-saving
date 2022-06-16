@@ -28,7 +28,7 @@ function checkApprove()
                 <div class="card card-primary">
                     <div class="card-header">
 
-                        <h3 class="card-title">Send Loan Request</h3>
+                        <h3 class="card-title">Pay Loan</h3>
                         <?php if (isset($msg) && $msg != "Succeesfully Requested") : ?>
                             <div class="alert alert-danger">
                                 <h5> <i class="icon fas fa-ban"></i> <?php echo $msg; ?></h5>
@@ -48,7 +48,7 @@ function checkApprove()
                         </div>
                         <!-- /.card-body -->
                         <div class="card-body">
-                            <button type="submit" name="submitLoans" id="submitNews" class="btn btn-info">Request</button>
+                            <button type="submit" name="submitPayLoans" id="submitPayLoans" class="btn btn-info">Pay</button>
                             <button type="submit" class="btn btn-default float-right">Cancel</button>
                         </div>
                         <!-- /.card-footer -->
