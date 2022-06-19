@@ -30,7 +30,7 @@
                                         $result = mysqli_query($conn, $sql);
                                         $i = 1;
                                         while ($row = mysqli_fetch_assoc($result)) {
-                                            if ($row['is_approved'] == 0) {
+                                            if ($row['is_approved'] == 0 &&$row['un_approved'] == 0) {
                                                 $id = $row['id'];
                                                 $cust_id = $row['cust_id'];
                                                 $amount = $row['amount'];

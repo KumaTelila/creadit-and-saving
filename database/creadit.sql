@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2022 at 07:42 AM
+-- Generation Time: Jun 16, 2022 at 11:54 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.15
 
@@ -49,7 +49,8 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `is_manager`, `is_admin`, 
 (95, 'Rahel', 'e2c655411d8d95ef73d8026704f5e7ad', 0, 0, 0, 1),
 (96, 'Girma', 'c9f50fe7b0efdaaea40f7ba3a4916dcf', 0, 0, 0, 1),
 (97, 'abc', '900150983cd24fb0d6963f7d28e17f72', 0, 0, 1, 0),
-(98, 'kuma1', 'd1019c05fe5be01ee4a965faa38f5e4d', 0, 0, 0, 1);
+(98, 'kuma1', 'd1019c05fe5be01ee4a965faa38f5e4d', 0, 0, 0, 1),
+(99, 'hermi', '165c7c3f6c59257c22d6147d3f84e613', 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,8 @@ INSERT INTO `employer` (`id`, `acc_id`, `name`, `gender`, `phone`, `email`, `rol
 (5, 91, NULL, NULL, NULL, NULL, 'admin', ''),
 (6, 92, 'Kuma Telila', NULL, '09655826584', NULL, 'manager', 'photo'),
 (7, 93, 'Girma Assefa', 'M', '251965582658', 'ku2@gmail.com', 'accountant', 'photo'),
-(8, 97, NULL, NULL, NULL, NULL, 'accountant', NULL);
+(8, 97, NULL, NULL, NULL, NULL, 'accountant', NULL),
+(9, 99, NULL, NULL, NULL, NULL, 'admin', NULL);
 
 -- --------------------------------------------------------
 
@@ -194,6 +196,7 @@ CREATE TABLE `news` (
   `man_id` int(11) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -201,9 +204,10 @@ CREATE TABLE `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `man_id`, `title`, `description`, `date`) VALUES
-(9, 92, 'news 2', 'asjhgjkl;sacjndskjfjiojkfslknvknk.jjnknlkvf', '2022-06-15'),
-(10, 92, 'new2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu lorem a elit consequat pulvinar. Morbi vestibulum ex vitae accumsan condimentum. Curabitur volutpat eget lectus nec imperdiet. Curabitur lacus erat, posuere vel lectus non, tristique interdum nibh. Nunc congue, neque a porta dictum, orci sem aliquet tellus, at dapibus enim urna eget purus. Proin in congue orci, sed dictum lorem. Nulla vel sapien ultrices, tincidunt dolor sed, blandit augue. Donec eros odio, mollis id sollicitudin eget, tincidunt faucibus quam. Quisque at nisi elementum, cursus sapien fringilla, euismod ante. Nunc aliquam purus id ullamcorper porttitor.', '2022-06-16');
+INSERT INTO `news` (`id`, `man_id`, `title`, `description`, `image`, `date`) VALUES
+(9, 92, 'news 2', 'asjhgjkl;sacjndskjfjiojkfslknvknk.jjnknlkvf', NULL, '2022-06-15'),
+(10, 92, 'new2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu lorem a elit consequat pulvinar. Morbi vestibulum ex vitae accumsan condimentum. Curabitur volutpat eget lectus nec imperdiet. Curabitur lacus erat, posuere vel lectus non, tristique interdum nibh. Nunc congue, neque a porta dictum, orci sem aliquet tellus, at dapibus enim urna eget purus. Proin in congue orci, sed dictum lorem. Nulla vel sapien ultrices, tincidunt dolor sed, blandit augue. Donec eros odio, mollis id sollicitudin eget, tincidunt faucibus quam. Quisque at nisi elementum, cursus sapien fringilla, euismod ante. Nunc aliquam purus id ullamcorper porttitor.', NULL, '2022-06-16'),
+(11, 92, 'news 3 ', 'መተማመን ብድርና ቁጠባ ተቋም ከብሔራዊ ባንክ ባገኘው ፈቃድ መሠረት ሁሉንም የኅብረተ ሰብ ክፍሎች በተለይም ሴቶችና ወጣቶች ለማገልገል የተቋቋመ ድርጅት ሲሆን ባሁኑ ወቅት በኦሮሚያ፣ በአማራ፣ በሲዳማ፣ በደቡብ ሕዝቦች እንዲሁም በአዲስ አበባ ከተማ አስተዳደር በጠቅላላው 29 ቅርንጫፎችና 4 ንዑስ ቅርንጫፎች ያሉት ተቋም ነው። ተቋሙ የኅብረተ ሰቡን ኢኮኖሚያዊና ማኅበራዊ ህይወት ለመለወጥ አገልግሎት በመስጠት ላይ የሚገኝ ተቋም ነው፡፡ ማኅበሩ ላለፉት ዐሥራ ስምንት ዓመታት ደንበኞቹን በማገልገል ላይ ይገኛል ወደፊትም አገልግሎቱን በሁሉም የሃገሪቱ ክልሎች ለማስፋፋት አቅዶ እየሠራ ይገኛል።', NULL, '2022-06-16');
 
 -- --------------------------------------------------------
 
@@ -301,7 +305,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -313,7 +317,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `employer`
 --
 ALTER TABLE `employer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -343,7 +347,7 @@ ALTER TABLE `money`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `report`

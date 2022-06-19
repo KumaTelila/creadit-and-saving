@@ -18,6 +18,17 @@ if(isset($_POST['approveLoan'])){
         echo "<script>window.location.href='manager.php?viewLoanDetails=$id'</script>";
     }
 }
+if(isset($_POST['unApproveLoan'])){
+    $sql2 = "UPDATE `loan_requstes` SET `un_approved` = 1 WHERE `id` = $id";
+    $result2 = mysqli_query($conn, $sql2);
+    if($result2){
+        echo "<script>alert('UnApproved Succesfully')</script>";
+        echo "<script>window.location.href='manager.php?respondLoan'</script>";
+    }else{
+        echo "<script>alert(Error')</script>";
+        echo "<script>window.location.href='manager.php?viewLoanDetails=$id'</script>";
+    }
+}
 ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -52,7 +63,8 @@ if(isset($_POST['approveLoan'])){
             </div>
             <div class="diplay-flex pr-5">
                 <form method="POST">
-                    <input type="submit" name="approveLoan" value="Approve" class="btn btn-primary float-right">
+                    <input type="submit" name="approveLoan" value="Approve" class="btn btn-primary float-left">
+                    <input type="submit" name="unApproveLoan" value="Unapprove" class="btn btn-primary float-right">
                 </form>
             </div>
         </section>

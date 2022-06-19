@@ -72,11 +72,6 @@ if (isset($_POST['update'])) {
     $phone = $_POST['phone'];
     $profile = $_POST['profile'];
     if (!empty($username) && !empty($password) && !empty($phone)  && !is_numeric($name)) {
-        $selectu = mysqli_query($conn, "SELECT * FROM `accounts` WHERE `username` = '$username'");
-        $duchk = mysqli_num_rows($selectu);
-        if ($duchk != 0) {
-            $msg = "username already exist please try another";
-        } else {
             $iquery1 = "UPDATE `accounts` SET `username` = '$username', `password` = '$password' WHERE `id` = '$id'";
             if (mysqli_query($conn, $iquery1)) {
                 $sql3 = "SELECT * FROM `accounts` WHERE `username` = '$username'";
@@ -95,7 +90,7 @@ if (isset($_POST['update'])) {
             } else {
                 $msg = "something went wrong";
             }
-        }
+        
     } else {
         $msg = "please insert correct value";
     }

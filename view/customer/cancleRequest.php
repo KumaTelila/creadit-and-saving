@@ -26,17 +26,23 @@
                                         function viewLoans()
                                         {
                                             include './connect.php';
-                                            $sql =  "select *from loan_requstes";
-                                            $result = mysqli_query($conn, $sql);
-                                            $no = 0;
+                                            $id = $_SESSION['id'];
+                                            $sql = "SELECT * FROM customer WHERE acc_id = '$id'";
+                                            $query = mysqli_query($conn, $sql);
+                                            $sqli = mysqli_fetch_assoc($query);
+                                            $cust_id = $sqli['id'];
+                                            $sql4 =  "select *from loan_requstes where cust_id = '$cust_id'";
+                                            $result = mysqli_query($conn, $sql4);
+                                            $no =0;
                                             while ($rows = mysqli_fetch_assoc($result)) {
                                                 $no++;
                                                 $id = $rows['id'];
                                                 $amount = $rows['amount'];
                                                 $is_approved = $rows['is_approved'];
-                                                if($is_approved==1){
+                                                $un_approved = $rows['un_approved'];
+                                                if ($is_approved == 1 || $un_approved == 1) {
                                                     continue;
-                                                }else{
+                                                } else {
                                                     echo '<tr>';
                                                     echo '<td>' . $no . '</td>';
                                                     echo '<td>' . $amount . '</td>';
@@ -45,7 +51,6 @@
                                                     echo '</td>';
                                                     echo '</tr>';
                                                 }
-        
                                             }
                                         }
                                         viewLoans();

@@ -16,9 +16,16 @@ $sql6 = "SELECT * FROM `accounts` WHERE id = $id";
 $query6 = mysqli_query($conn, $sql6);
 $sqli6 = mysqli_fetch_assoc($query6);
 $username = $sqli6['username'];
+
+// Send Report
 if (isset($_POST['submitReport'])) {
     $report_type = $_POST['title'];
     $report = $_POST['desc'];
+    $date = date("Y-m-d");
+    $sql7 = "SELECT * FROM `loan_requstes` WHERE `is_registered` == 1";
+    $iquery7 = mysqli_query($conn, $sql7);
+    $row7 = mysqli_fetch_assoc($iquery7);
+    $no_of_issue = mysqli_num_rows($row);
     if (!empty($report_type) && !empty($report)) {
         $iquery = "INSERT INTO `report`(`acc_id`, `report_type`, `reporter_name`, `report`) VALUES ('$id', '$report_type', '$name', '$report')";
         $insert = mysqli_query($conn, $iquery) or die(mysqli_error($conn));
@@ -27,13 +34,8 @@ if (isset($_POST['submitReport'])) {
         $msg = "Something error ";
     }
 }
-// $sql = "SELECT * FROM `employer` WHERE `acc_id` = '$_SESSION[accountant]'";
-// $result = mysqli_query($conn, $sql);
-// $row = mysqli_fetch_assoc($result);
-// if($row['name']=="" && $row['phone']==""  && $row['gender']=="" && $row['email']==""){
-//     echo "<script>alert('Please Fill All Information ')</script>";
-//     echo "<script>window.location.replace('accountant_registration.php')</script>";
-// }
+
+//issue money
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "UPDATE `loan_requstes` SET `is_registered`='1' WHERE id = $id";
@@ -53,6 +55,8 @@ if (isset($_GET['id'])) {
         echo "<script>window.location.replace('accountant.php?registerIssueMoney')</script>";
     }
 }
+
+//repay money
 if (isset($_GET['repay_id'])) {
     $id = $_GET['repay_id'];
     $sql = "UPDATE `loan_repay` SET `is_registered`='1' WHERE id = $id";
@@ -72,6 +76,8 @@ if (isset($_GET['repay_id'])) {
         echo "<script>window.location.replace('accountant.php?registerRepayMoney')</script>";
     }
 }
+
+//update profile
 if (isset($_POST['update'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
