@@ -88,10 +88,21 @@ if (isset($_POST['submit'])) {
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "Delete from accounts where id = '$id'";
+    // $sql = "Delete from accounts where id = '$id'";
+    $sql = "UPDATE `accounts` SET `is_deleted`= TRUE WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        echo "<script>alert('Deleted Successfully')</script>";
+        echo "<script>alert('Disabled Successfully')</script>";
+        echo "<script>window.location.replace('admin.php?disabledUserList')</script>";
+    }
+}
+if (isset($_GET['e_id'])) {
+    $id = $_GET['e_id'];
+    // $sql = "Delete from accounts where id = '$id'";
+    $sql = "UPDATE `accounts` SET `is_deleted`= FALSE WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo "<script>alert('Enabled Successfully')</script>";
         echo "<script>window.location.replace('admin.php?userList')</script>";
     }
 }
@@ -118,13 +129,17 @@ if (isset($_GET['feedback_id'])) {
         <?php include 'inc/admin_side.php'; ?>
         <?php
         if (
-            isset($_GET['createAccount']) || isset($_GET['userList']) || isset($_GET['backupDatabase']) || isset($_GET['viewFeedback'])
+            isset($_GET['createAccount']) || isset($_GET['userList']) || isset($_GET['disabledUserList']) 
+            || isset($_GET['backupDatabase']) || isset($_GET['viewFeedback'])
         ) {
             if (isset($_GET['createAccount'])) {
                 include './view/admin/create-account.php';
             }
             if (isset($_GET['userList'])) {
                 include './view/admin/user-list.php';
+            }
+            if (isset($_GET['disabledUserList'])) {
+                include './view/admin/disabled-user-list.php';
             }
             if (isset($_GET['backupDatabase'])) {
                 include './view/admin/backup-database.php';

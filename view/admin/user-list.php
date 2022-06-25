@@ -36,7 +36,8 @@
                                             $i = 1;
                                             while ($row = mysqli_fetch_assoc($res)) {
                                                 $id = $row['id'];
-                                                if ($id == $admin_id) {
+                                                $is_deleted = $row['is_deleted'];
+                                                if ($id == $admin_id || $is_deleted == 1) {
                                                     continue;
                                                 }
                                                 $username = $row['username'];
@@ -54,7 +55,7 @@
                                                 echo "<td>$id</td>";
                                                 echo "<td>$username</td>";
                                                 echo "<td>$user_type</td>";
-                                                echo "<td><a href='admin.php?id=$id' class='btn btn-danger'>Delete</a></td>";
+                                                echo "<td><a href='admin.php?id=$id' class='btn btn-danger'>Disable</a></td>";
                                                 echo "</tr>";
                                                 $i++;
                                             }

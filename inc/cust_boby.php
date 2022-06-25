@@ -13,7 +13,7 @@
                                 <div class="card-body">
                                     <div>
                                         <div class="row">
-                                            <div class="col-md-2 col-lg-2 col-sm-12"><img src="dist/img/avatar.png" class="img-thumbnail" alt="Cinque Terre" width="100%"></div>
+                                            <div class="col-md-2 col-lg-2 col-sm-12"><img src="./image/<?php echo $profile ?>" class="img-thumbnail" alt="Please update your profile" width="100%"></div>
                                             <div class="col-md-5 col-lg-5 col-sm-12">
                                                 <p><strong class="label-colen">Full Name: </strong><?php echo $name ?></p>
                                                 <p><strong class="label-colen">Account Number: </strong><?php echo $cust_id ?></p>

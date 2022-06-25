@@ -17,7 +17,7 @@
                 <div class="card-body row">
                     <div class="col-md-8 col-lg-8 col-sm-12 offset-md-2 offset-lg-2">
                         <p></p>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                         <div class="row ml-3 mr-3">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -33,12 +33,8 @@
                                 <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" value="<?php echo $phone ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                            </div>
-                            <div class="form-group">
                                 <label>Profile Picture </label>
-                                <input type="file" name="profile">
+                                <input class="form-control" type="file" name="uploadfile" value="" />
                             </div>
                         </div>
                     </div>

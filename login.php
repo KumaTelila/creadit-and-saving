@@ -31,6 +31,9 @@ function login($username, $password)
     $query = mysqli_query($conn, $sql);
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
+        if($row['is_deleted']==1){
+            return false;
+        }
         $accid = $row['id'];
         $accname = $row['username'];
         if ($row['is_manager'] == 1) {
@@ -46,17 +49,6 @@ function login($username, $password)
         $_SESSION['id'] = $accid;
         $_SESSION['username'] = $accname;
         $_SESSION['role'] = $role;
-        // 
-        // if ($_SESSION['role'] == "pharmacy") {
-        //     if ($is_approved) {
-        //         $sql2 = "SELECT * FROM pharmacy_info WHERE acc_id= $accid";
-        //         $row = mysqli_fetch_array(mysqli_query($this->connect(), $sql2));
-        //         $pharmacy_id = $row['id'];
-        //         $pharmacy_name = $row['Pharmacy_Name'];
-        //         $_SESSION['pharmacy_id'] = $pharmacy_id;
-        //         $_session['pharacy_name'] = $pharmacy_name;
-        //     }
-        // }
         return true;
     }
     return false;

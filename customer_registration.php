@@ -6,8 +6,12 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $gender  = $_POST['gender'];
-    $profile = $_POST['profile'];
-    if (!empty($username) && !empty($password) && !empty($profile) && !empty($phone) && is_numeric($phone) && !is_numeric($username)  && !is_numeric($name)) {
+
+    $filename = $_FILES["uploadfile"]["name"];
+    $filename = date('Y-m-d H:i:s').$filename;
+	$tempname = $_FILES["uploadfile"]["tmp_name"];
+	$folder = "./image/" . $filename;
+    if (!empty($username) && !empty($password) && !empty($phone) && is_numeric($phone) && !is_numeric($username)  && !is_numeric($name)) {
         $selectu = mysqli_query($conn, "SELECT * FROM `accounts` WHERE `username` = '$username'");
         $duchk = mysqli_num_rows($selectu);
         if ($duchk != 0) {
@@ -20,11 +24,16 @@ if (isset($_POST['submit'])) {
                 $row = mysqli_fetch_array($query);
                 $acc_id = $row['id'];
                 $sql4 = "INSERT INTO `customer`(`acc_id`, `name`, `gender`, `phone`,   `photo`) 
-                VALUES ('$acc_id','$name','$gender',' $phone', 'photo')";
+                VALUES ('$acc_id','$name','$gender',' $phone', '$filename')";
                 if (mysqli_query($conn, $sql4)) {
                     echo "<script>alert('Succeesfully Registered')</script>";
                     echo "<script>window.location.replace('login.php')</script>";
                     $msg = "Succeesfully Registered";
+                    if (move_uploaded_file($tempname, $folder)) {
+                        $msg = "Succeesfully Registered";
+                    } else {
+                        $msg = "error in uploading image";
+                    }
 
                 } else {
                     $msg = "Error  " . mysqli_error($conn);
@@ -62,7 +71,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row ml-3 mr-3">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -90,7 +99,7 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="form-group">
                                 <label>Profile Picture </label>
-                                <input type="file" name="profile">
+                                <input class="form-control" type="file" name="uploadfile" value="" />
                             </div>
                         </div>
                     </div>

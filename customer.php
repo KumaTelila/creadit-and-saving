@@ -12,6 +12,7 @@ $cust_id = $sqli['id'];
 $name = $sqli['name'];
 $phone = $sqli['phone'];
 $balance = $sqli['balance'];
+$profile = $sqli['photo'];
 $sql1 = "SELECT * FROM `accounts` WHERE id = $id";
 $query1 = mysqli_query($conn, $sql1);
 $sqli1 = mysqli_fetch_assoc($query1);
@@ -67,22 +68,30 @@ if (isset($_GET['id'])) {
 }
 if (isset($_POST['update'])) {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
     $name = $_POST['name'];
     $phone = $_POST['phone'];
-    $profile = $_POST['profile'];
-    if (!empty($username) && !empty($password) && !empty($phone)  && !is_numeric($name)) {
-            $iquery1 = "UPDATE `accounts` SET `username` = '$username', `password` = '$password' WHERE `id` = '$id'";
+
+    $filename = $_FILES["uploadfile"]["name"];
+    $filename = date('Y-m-d H:i:s').$filename;
+	$tempname = $_FILES["uploadfile"]["tmp_name"];
+	$folder = "./image/" . $filename;
+    if (!empty($username)  && !empty($phone)  && !is_numeric($name)) {
+            $iquery1 = "UPDATE `accounts` SET `username` = '$username' WHERE `id` = '$id'";
             if (mysqli_query($conn, $iquery1)) {
                 $sql3 = "SELECT * FROM `accounts` WHERE `username` = '$username'";
                 $query = mysqli_query($conn, $sql3);
                 $row = mysqli_fetch_array($query);
                 $acc_id = $row['id'];
-                $sql4 = "UPDATE `customer` SET `name` = '$name', `phone` = '$phone', `photo` = 'photo' WHERE `id` = '$cust_id'";
+                $sql4 = "UPDATE `customer` SET `name` = '$name', `phone` = '$phone', `photo` = '$filename' WHERE `id` = '$cust_id'";
                 if (mysqli_query($conn, $sql4)) {
                     echo "<script>alert('Succeesfully Updated')</script>";
                     echo "<script>window.location.replace('customer.php')</script>";
                     $msg = "Succeesfully Updated";
+                    if (move_uploaded_file($tempname, $folder)) {
+                        $msg = "Succeesfully Updated";
+                    } else {
+                        $msg = "error in uploading image";
+                    }
 
                 } else {
                     $msg = "Error  " . mysqli_error($conn);

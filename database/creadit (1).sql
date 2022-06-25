@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2022 at 11:54 AM
+-- Generation Time: Jun 19, 2022 at 12:35 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.15
 
@@ -48,9 +48,12 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `is_manager`, `is_admin`, 
 (93, 'accountant', '56f97f482ef25e2f440df4a424e2ab1e', 0, 0, 1, 0),
 (95, 'Rahel', 'e2c655411d8d95ef73d8026704f5e7ad', 0, 0, 0, 1),
 (96, 'Girma', 'c9f50fe7b0efdaaea40f7ba3a4916dcf', 0, 0, 0, 1),
-(97, 'abc', '900150983cd24fb0d6963f7d28e17f72', 0, 0, 1, 0),
 (98, 'kuma1', 'd1019c05fe5be01ee4a965faa38f5e4d', 0, 0, 0, 1),
-(99, 'hermi', '165c7c3f6c59257c22d6147d3f84e613', 0, 1, 0, 0);
+(99, 'hermi', '165c7c3f6c59257c22d6147d3f84e613', 0, 1, 0, 0),
+(100, 'girme', 'c7152ecfca057d9432ee71d173e63c0b', 1, 0, 0, 0),
+(101, 'tola1', 'ad50ce09d2cae59102a31c1e6034fcb9', 0, 0, 0, 1),
+(102, 'baley', '46f9604dac787fab9a4d8d68c6da428d', 0, 0, 0, 1),
+(103, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +67,7 @@ CREATE TABLE `customer` (
   `name` varchar(100) NOT NULL,
   `gender` char(1) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
-  `balance` int(11) DEFAULT NULL,
+  `balance` int(100) DEFAULT 0,
   `date` date NOT NULL DEFAULT current_timestamp(),
   `photo` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -74,9 +77,12 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `acc_id`, `name`, `gender`, `phone`, `balance`, `date`, `photo`) VALUES
-(27, 95, 'Rahel Assefa', 'F', ' 251965582658', -7000, '2022-06-15', 'photo'),
+(27, 95, 'Rahel Assefa', 'F', ' 251965582658', 2000, '2022-06-15', 'photo'),
 (28, 96, 'Girma Assefa', 'M', ' 09852455622', 0, '2022-06-15', 'photo'),
-(29, 98, 'Kuma Telila', 'M', ' 965582658', NULL, '2022-06-16', 'photo');
+(29, 98, 'Kuma Telila', 'M', ' 965582658', 0, '2022-06-16', 'photo'),
+(30, 101, 'Tola Lema', 'M', ' 251965582658', 0, '2022-06-17', 'photo'),
+(31, 102, 'Baley Desu', 'M', ' 965582658', -3000, '2022-06-19', 'photo'),
+(32, 103, 'user bb', 'F', ' 09655826584', 5000, '2022-06-19', 'photo');
 
 -- --------------------------------------------------------
 
@@ -103,8 +109,8 @@ INSERT INTO `employer` (`id`, `acc_id`, `name`, `gender`, `phone`, `email`, `rol
 (5, 91, NULL, NULL, NULL, NULL, 'admin', ''),
 (6, 92, 'Kuma Telila', NULL, '09655826584', NULL, 'manager', 'photo'),
 (7, 93, 'Girma Assefa', 'M', '251965582658', 'ku2@gmail.com', 'accountant', 'photo'),
-(8, 97, NULL, NULL, NULL, NULL, 'accountant', NULL),
-(9, 99, NULL, NULL, NULL, NULL, 'admin', NULL);
+(9, 99, NULL, NULL, NULL, NULL, 'admin', NULL),
+(10, 100, NULL, NULL, NULL, NULL, 'manager', NULL);
 
 -- --------------------------------------------------------
 
@@ -125,7 +131,8 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`id`, `cust_id`, `sender_name`, `message`, `date`) VALUES
-(7, 27, 'Rahel Assefa', 'Duis lacinia ac neque et congue. Ut auctor, massa eu lacinia ornare, enim sapien varius turpis, et vulputate urna risus non tellus. Cras justo enim, eleifend vitae nisl sit amet, tristique facilisis lacus. Suspendisse ultrices et justo eu condimentum. Nunc ut nulla sagittis ligula sodales faucibus a vel ante. Sed eget felis nec sapien porttitor commodo. Curabitur odio mi, tristique id tortor sed, dapibus vulputate massa. Ut in tortor pretium, mollis nunc vitae, vulputate arcu.', '2022-06-16');
+(7, 27, 'Rahel Assefa', 'Duis lacinia ac neque et congue. Ut auctor, massa eu lacinia ornare, enim sapien varius turpis, et vulputate urna risus non tellus. Cras justo enim, eleifend vitae nisl sit amet, tristique facilisis lacus. Suspendisse ultrices et justo eu condimentum. Nunc ut nulla sagittis ligula sodales faucibus a vel ante. Sed eget felis nec sapien porttitor commodo. Curabitur odio mi, tristique id tortor sed, dapibus vulputate massa. Ut in tortor pretium, mollis nunc vitae, vulputate arcu.', '2022-06-16'),
+(9, 30, 'Tola Leeema', 'I want to money', '2022-06-17');
 
 -- --------------------------------------------------------
 
@@ -137,16 +144,20 @@ CREATE TABLE `loan_repay` (
   `id` int(11) NOT NULL,
   `cust_id` bigint(11) NOT NULL,
   `amount` int(11) NOT NULL,
-  `is_registered` tinyint(1) NOT NULL DEFAULT 0
+  `is_registered` tinyint(1) NOT NULL DEFAULT 0,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `loan_repay`
 --
 
-INSERT INTO `loan_repay` (`id`, `cust_id`, `amount`, `is_registered`) VALUES
-(2, 27, 10000, 1),
-(3, 27, 12000, 0);
+INSERT INTO `loan_repay` (`id`, `cust_id`, `amount`, `is_registered`, `date`) VALUES
+(2, 27, 10000, 1, '2022-06-19'),
+(3, 27, 12000, 1, '2022-06-19'),
+(4, 30, 10000, 1, '2022-06-19'),
+(5, 31, 20000, 0, '2022-06-19'),
+(6, 32, 10000, 1, '2022-06-19');
 
 -- --------------------------------------------------------
 
@@ -159,6 +170,7 @@ CREATE TABLE `loan_requstes` (
   `cust_id` bigint(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `is_approved` tinyint(1) NOT NULL DEFAULT 0,
+  `un_approved` tinyint(1) NOT NULL DEFAULT 0,
   `is_registered` tinyint(1) NOT NULL DEFAULT 0,
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -167,10 +179,16 @@ CREATE TABLE `loan_requstes` (
 -- Dumping data for table `loan_requstes`
 --
 
-INSERT INTO `loan_requstes` (`id`, `cust_id`, `amount`, `is_approved`, `is_registered`, `date`) VALUES
-(20, 27, 1000, 1, 1, '2022-06-16'),
-(21, 27, 11000, 1, 1, '2022-06-16'),
-(22, 27, 5000, 1, 1, '2022-06-16');
+INSERT INTO `loan_requstes` (`id`, `cust_id`, `amount`, `is_approved`, `un_approved`, `is_registered`, `date`) VALUES
+(20, 27, 1000, 1, 0, 1, '2022-06-16'),
+(21, 27, 11000, 1, 0, 1, '2022-06-16'),
+(22, 27, 5000, 1, 0, 1, '2022-06-16'),
+(23, 30, 2000, 1, 0, 1, '2022-06-17'),
+(24, 27, 3000, 1, 0, 1, '2022-06-17'),
+(25, 31, 1000, 1, 0, 1, '2022-06-19'),
+(26, 31, 2000, 1, 0, 1, '2022-06-19'),
+(27, 32, 10000, 0, 1, 0, '2022-06-19'),
+(28, 32, 5000, 1, 0, 1, '2022-06-19');
 
 -- --------------------------------------------------------
 
@@ -207,7 +225,8 @@ CREATE TABLE `news` (
 INSERT INTO `news` (`id`, `man_id`, `title`, `description`, `image`, `date`) VALUES
 (9, 92, 'news 2', 'asjhgjkl;sacjndskjfjiojkfslknvknk.jjnknlkvf', NULL, '2022-06-15'),
 (10, 92, 'new2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu lorem a elit consequat pulvinar. Morbi vestibulum ex vitae accumsan condimentum. Curabitur volutpat eget lectus nec imperdiet. Curabitur lacus erat, posuere vel lectus non, tristique interdum nibh. Nunc congue, neque a porta dictum, orci sem aliquet tellus, at dapibus enim urna eget purus. Proin in congue orci, sed dictum lorem. Nulla vel sapien ultrices, tincidunt dolor sed, blandit augue. Donec eros odio, mollis id sollicitudin eget, tincidunt faucibus quam. Quisque at nisi elementum, cursus sapien fringilla, euismod ante. Nunc aliquam purus id ullamcorper porttitor.', NULL, '2022-06-16'),
-(11, 92, 'news 3 ', 'መተማመን ብድርና ቁጠባ ተቋም ከብሔራዊ ባንክ ባገኘው ፈቃድ መሠረት ሁሉንም የኅብረተ ሰብ ክፍሎች በተለይም ሴቶችና ወጣቶች ለማገልገል የተቋቋመ ድርጅት ሲሆን ባሁኑ ወቅት በኦሮሚያ፣ በአማራ፣ በሲዳማ፣ በደቡብ ሕዝቦች እንዲሁም በአዲስ አበባ ከተማ አስተዳደር በጠቅላላው 29 ቅርንጫፎችና 4 ንዑስ ቅርንጫፎች ያሉት ተቋም ነው። ተቋሙ የኅብረተ ሰቡን ኢኮኖሚያዊና ማኅበራዊ ህይወት ለመለወጥ አገልግሎት በመስጠት ላይ የሚገኝ ተቋም ነው፡፡ ማኅበሩ ላለፉት ዐሥራ ስምንት ዓመታት ደንበኞቹን በማገልገል ላይ ይገኛል ወደፊትም አገልግሎቱን በሁሉም የሃገሪቱ ክልሎች ለማስፋፋት አቅዶ እየሠራ ይገኛል።', NULL, '2022-06-16');
+(11, 92, 'news 3 ', 'መተማመን ብድርና ቁጠባ ተቋም ከብሔራዊ ባንክ ባገኘው ፈቃድ መሠረት ሁሉንም የኅብረተ ሰብ ክፍሎች በተለይም ሴቶችና ወጣቶች ለማገልገል የተቋቋመ ድርጅት ሲሆን ባሁኑ ወቅት በኦሮሚያ፣ በአማራ፣ በሲዳማ፣ በደቡብ ሕዝቦች እንዲሁም በአዲስ አበባ ከተማ አስተዳደር በጠቅላላው 29 ቅርንጫፎችና 4 ንዑስ ቅርንጫፎች ያሉት ተቋም ነው። ተቋሙ የኅብረተ ሰቡን ኢኮኖሚያዊና ማኅበራዊ ህይወት ለመለወጥ አገልግሎት በመስጠት ላይ የሚገኝ ተቋም ነው፡፡ ማኅበሩ ላለፉት ዐሥራ ስምንት ዓመታት ደንበኞቹን በማገልገል ላይ ይገኛል ወደፊትም አገልግሎቱን በሁሉም የሃገሪቱ ክልሎች ለማስፋፋት አቅዶ እየሠራ ይገኛል።', NULL, '2022-06-16'),
+(12, 100, 'Loan Criteria ', 'If you want to loan read the following procedures', NULL, '2022-06-17');
 
 -- --------------------------------------------------------
 
@@ -305,37 +324,37 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `employer`
 --
 ALTER TABLE `employer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `loan_repay`
 --
 ALTER TABLE `loan_repay`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `loan_requstes`
 --
 ALTER TABLE `loan_requstes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `money`
@@ -347,7 +366,7 @@ ALTER TABLE `money`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `report`

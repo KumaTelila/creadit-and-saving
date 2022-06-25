@@ -55,7 +55,11 @@ if (isset($_POST['update'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $profile = $_POST['profile'];
+   
+    $filename = $_FILES["uploadfile"]["name"];
+    $filename = date('Y-m-d H:i:s').$filename;
+	$tempname = $_FILES["uploadfile"]["tmp_name"];
+	$folder = "./image/" . $filename;
     if (!empty($username) && !empty($password) && !empty($phone)  && !is_numeric($name)) {
             $iquery1 = "UPDATE `accounts` SET `username` = '$username', `password` = '$password' WHERE `id` = '$id'";
             if (mysqli_query($conn, $iquery1)) {
@@ -68,6 +72,12 @@ if (isset($_POST['update'])) {
                     echo "<script>alert('Succeesfully Updated')</script>";
                     echo "<script>window.location.replace('manager.php')</script>";
                     $msg = "Succeesfully Updated";
+                    if (move_uploaded_file($tempname, $folder)) {
+                        $msg = "Succeesfully Updated";
+                    } else {
+                        $msg = "error in uploading image";
+                    }
+
 
                 } else {
                     $msg = "Error  " . mysqli_error($conn);

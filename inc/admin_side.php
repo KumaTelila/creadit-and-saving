@@ -41,6 +41,16 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav nav-treeview pl-3">
+                        <li class="nav-item">
+                            <a href="admin.php?disabledUserList" class="nav-link <?php if (isset($_GET['disabledUserList'])) {
+                                                                                    echo 'active';
+                                                                                } ?>">
+                                <i class="fas fa-tasks"></i>
+                                <p>Disabled User List</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link ">

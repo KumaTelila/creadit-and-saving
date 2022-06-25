@@ -37,10 +37,6 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" value="<?php echo $email ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                            </div>
-                            <div class="form-group">
                                 <label>Profile Picture </label>
                                 <input type="file" name="profile">
                             </div>
