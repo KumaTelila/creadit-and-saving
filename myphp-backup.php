@@ -264,7 +264,7 @@ class Backup_Database {
  
                 $sql.="\n\n";
 
-                $this->obfPrint('OK');
+                //$this->obfPrint('OK');
             }
 
             /**
@@ -279,7 +279,7 @@ class Backup_Database {
             if ($this->gzipBackupFile) {
                 $this->gzipBackupFile();
             } else {
-                $this->obfPrint('Backup file succesfully saved to ' . $this->backupDir.'/'.$this->backupFile, 1, 1);
+                //$this->obfPrint('Backup file succesfully saved to ' . $this->backupDir.'/'.$this->backupFile, 1, 1);
             }
         } catch (Exception $e) {
             print_r($e->getMessage());
@@ -388,7 +388,7 @@ class Backup_Database {
         // Save output for later use
         $this->output .= str_replace('<br />', '\n', $output);
 
-        echo $output;
+        // echo $output;
 
 
         if (php_sapi_name() != "cli") {
@@ -469,7 +469,7 @@ if (php_sapi_name() != "cli") {
 $backupDatabase = new Backup_Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, CHARSET);
 
 // Option-1: Backup tables already defined above
-$result = $backupDatabase->backupTables(TABLES) ? 'OK' : 'KO';
+$result = $backupDatabase->backupTables(TABLES);
 
 // Option-2: Backup changed tables only - uncomment block below
 /*
@@ -483,7 +483,22 @@ $result = $backupDatabase->backupTables($changed) ? 'OK' : 'KO';
 */
 
 
-$backupDatabase->obfPrint('Backup result: ' . $result, 1);
+//$backupDatabase->obfPrint('Backup result: ' . $result, 1);
+echo '<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+    <section class="content">
+        <section class="content pb-1 ">
+            <div class="container-fluid">
+            <h1>Susseccfully Backuped</h1>
+            <h3>check in <span>myphp-backup-files Folder</span></h3>
+            </div>
+        </section>
+    </section>
+</section>
+<!-- /.content -->
+</div';
 
 // Use $output variable for further processing, for example to send it by email
 $output = $backupDatabase->getOutput();

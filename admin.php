@@ -142,7 +142,7 @@ if (isset($_GET['feedback_id'])) {
                 include './view/admin/disabled-user-list.php';
             }
             if (isset($_GET['backupDatabase'])) {
-                include './view/admin/backup-database.php';
+                include 'myphp-backup.php';
             }
             if (isset($_GET['viewFeedback'])) {
                 include './view/admin/view-feedback.php';

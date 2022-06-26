@@ -19,11 +19,22 @@ $sqli1 = mysqli_fetch_assoc($query1);
 $username = $sqli1['username'];
 if (isset($_POST['submitLoans'])) {
     $amount = $_POST['title'];
+    $disc = $_POST['desc'];
+
+    $filename = $_FILES["uploadfile"]["name"];
+    $filename = date('Y-m-d H:i:s').$filename;
+	$tempname = $_FILES["uploadfile"]["tmp_name"];
+	$folder = "./image/" . $filename;
     if (!empty($amount) && is_numeric($amount)) {
-        $iquery = "INSERT INTO `loan_requstes`(`cust_id`, `amount`) VALUES ('$cust_id','$amount')";
+        $iquery = "INSERT INTO `loan_requstes`(`cust_id`, `amount`, `description`, `photo`) VALUES ('$cust_id','$amount', '$disc', '$filename')";
         $insert = mysqli_query($conn, $iquery);
         if($insert){
         $msg = "Succeesfully Requested";
+        if (move_uploaded_file($tempname, $folder)) {
+            $msg = "Succeesfully Requested";
+        } else {
+            $msg = "error in uploading image";
+        }
         }else{
             $msg = "Something went wrong";
         }

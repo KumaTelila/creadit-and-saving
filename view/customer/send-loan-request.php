@@ -11,10 +11,10 @@ function checkApprove()
             return true;
         } else {
             return false;
-        } 
-        }else {
-         return true;
-    } 
+        }
+    } else {
+        return true;
+    }
 }
 ?>
 
@@ -39,11 +39,20 @@ function checkApprove()
                             </div>
                         <?php endif ?>
                     </div>
-                    <form class="form-horizontal" method="POST" action="">
+                    <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Amount</label>
                                 <input type="text" name="title" id="title" class="form-control" placeholder="Amount in Birr">
+                            </div>
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" name="desc" id="desc" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Gurante Image e.i Home</label>
+                                <input class="form-control" type="file" name="uploadfile" value="" />
                             </div>
                         </div>
                         <!-- /.card-body -->
