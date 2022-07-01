@@ -53,7 +53,7 @@ if (isset($_POST['unApproveLoan'])) {
                 <div class="row">
                 <label class="input-group">gurante Image </label>
                     <div class="col-md-2 col-lg-4 col-sm-6"><img src="./image/<?php echo $image ?>" class="img-thumbnail" alt="Please update your profile" width="100%"></div>
-                    <div class="col-md-5 col-lg-5 col-sm-6 ">
+                    <div class="col-md-5 col-lg-4 col-sm-6 ">
                         <label class="input-group">Customer Name</label>
                         <p><?php echo $row1['name'] ?></p>
                         <label class="input-group">Customer Current Balance</label>
@@ -66,6 +66,20 @@ if (isset($_POST['unApproveLoan'])) {
                         <p><?php echo $row['date'] ?></p>
                         <label class="input-group">Description About Loan</label>
                         <p><?php echo $row['description'] ?></p>
+                    </div>
+                    <div class="col-md-5 col-lg-4 col-sm-6 ">
+                        <label class="input-group">Livind Adress Subcity</label>
+                        <p><?php echo $row['lsubCity'] ?></p>
+                        <label class="input-group">Livind Adress Woreda</label>
+                        <p><?php echo $row['lworeda'] ?></p>
+                        <label class="input-group">Education Level</label>
+                        <p><?php echo $row['edu'] ?></p>
+                        <label class="input-group">Job Position</label>
+                        <p><?php echo $row['job'] ?></p>
+                        <label class="input-group">Salary</label>
+                        <p><?php echo $row['salary'] ?></p>
+                        <label class="input-group">Loan Round</label>
+                        <p><?php echo $row['round'] ?></p>
                     </div>
                 </div>
             </div>

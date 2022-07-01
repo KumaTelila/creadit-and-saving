@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2022 at 12:35 PM
+-- Generation Time: Jun 26, 2022 at 09:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.15
 
@@ -34,26 +34,30 @@ CREATE TABLE `accounts` (
   `is_manager` tinyint(1) DEFAULT 0,
   `is_admin` tinyint(1) DEFAULT 0,
   `is_accountant` tinyint(1) DEFAULT 0,
-  `is_customer` tinyint(1) DEFAULT 0
+  `is_customer` tinyint(1) DEFAULT 0,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `username`, `password`, `is_manager`, `is_admin`, `is_accountant`, `is_customer`) VALUES
-(34, 'kuma', '8c9d806c6d2e80e87b60e1e860042303', 0, 1, 0, 0),
-(91, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1, 0, 0),
-(92, 'manager', '1d0258c2440a8d19e716292b231e3190', 1, 0, 0, 0),
-(93, 'accountant', '56f97f482ef25e2f440df4a424e2ab1e', 0, 0, 1, 0),
-(95, 'Rahel', 'e2c655411d8d95ef73d8026704f5e7ad', 0, 0, 0, 1),
-(96, 'Girma', 'c9f50fe7b0efdaaea40f7ba3a4916dcf', 0, 0, 0, 1),
-(98, 'kuma1', 'd1019c05fe5be01ee4a965faa38f5e4d', 0, 0, 0, 1),
-(99, 'hermi', '165c7c3f6c59257c22d6147d3f84e613', 0, 1, 0, 0),
-(100, 'girme', 'c7152ecfca057d9432ee71d173e63c0b', 1, 0, 0, 0),
-(101, 'tola1', 'ad50ce09d2cae59102a31c1e6034fcb9', 0, 0, 0, 1),
-(102, 'baley', '46f9604dac787fab9a4d8d68c6da428d', 0, 0, 0, 1),
-(103, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 0, 0, 0, 1);
+INSERT INTO `accounts` (`id`, `username`, `password`, `is_manager`, `is_admin`, `is_accountant`, `is_customer`, `is_deleted`) VALUES
+(34, 'kuma', '8c9d806c6d2e80e87b60e1e860042303', 0, 1, 0, 0, 0),
+(91, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1, 0, 0, 1),
+(92, 'manager', '1d0258c2440a8d19e716292b231e3190', 1, 0, 0, 0, 0),
+(93, 'accountant', '56f97f482ef25e2f440df4a424e2ab1e', 0, 0, 1, 0, 0),
+(95, 'Rahel', 'e2c655411d8d95ef73d8026704f5e7ad', 0, 0, 0, 1, 0),
+(96, 'Girma', 'c9f50fe7b0efdaaea40f7ba3a4916dcf', 0, 0, 0, 1, 0),
+(98, 'kuma1', 'd1019c05fe5be01ee4a965faa38f5e4d', 0, 0, 0, 1, 0),
+(99, 'hermi', '165c7c3f6c59257c22d6147d3f84e613', 0, 1, 0, 0, 1),
+(100, 'girme', 'c7152ecfca057d9432ee71d173e63c0b', 1, 0, 0, 0, 0),
+(101, 'tola1', 'ad50ce09d2cae59102a31c1e6034fcb9', 0, 0, 0, 1, 0),
+(102, 'baley', '46f9604dac787fab9a4d8d68c6da428d', 0, 0, 0, 1, 0),
+(103, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 0, 0, 0, 1, 0),
+(105, 'Girma1', '686bba45f5491a606a3b5f4692fe2dca', 0, 0, 0, 1, 0),
+(109, 'sisay', 'd11a5b51cdf3967f9e4dd61f93d6dd4d', 0, 0, 0, 1, 0),
+(110, 'User21', '85b7a29973177a3644ac4481753f2863', 0, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -81,8 +85,11 @@ INSERT INTO `customer` (`id`, `acc_id`, `name`, `gender`, `phone`, `balance`, `d
 (28, 96, 'Girma Assefa', 'M', ' 09852455622', 0, '2022-06-15', 'photo'),
 (29, 98, 'Kuma Telila', 'M', ' 965582658', 0, '2022-06-16', 'photo'),
 (30, 101, 'Tola Lema', 'M', ' 251965582658', 0, '2022-06-17', 'photo'),
-(31, 102, 'Baley Desu', 'M', ' 965582658', -3000, '2022-06-19', 'photo'),
-(32, 103, 'user bb', 'F', ' 09655826584', 5000, '2022-06-19', 'photo');
+(31, 102, 'Baley Desu', 'M', ' 965582658', -3000, '2022-06-19', '2022-06-24 17:14:45Screenshot from 2022-06-23 18-03-53.png'),
+(32, 103, 'user bb', 'F', ' 09655826584', 5000, '2022-06-19', 'photo'),
+(34, 105, 'Rahel Girma1', 'F', ' 09655826584', 0, '2022-06-24', 'photo'),
+(38, 109, 'sisay lll', 'M', ' 965582658', 0, '2022-06-24', '2022-06-24 16:13:57php-certificate.jpg'),
+(39, 110, 'Kuma Telila User21', 'M', ' 0965582658', 0, '2022-06-24', '2022-06-24 17:26:2820210107_183106.jpg');
 
 -- --------------------------------------------------------
 
@@ -169,6 +176,8 @@ CREATE TABLE `loan_requstes` (
   `id` int(11) NOT NULL,
   `cust_id` bigint(11) NOT NULL,
   `amount` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `photo` varchar(250) NOT NULL,
   `is_approved` tinyint(1) NOT NULL DEFAULT 0,
   `un_approved` tinyint(1) NOT NULL DEFAULT 0,
   `is_registered` tinyint(1) NOT NULL DEFAULT 0,
@@ -179,16 +188,18 @@ CREATE TABLE `loan_requstes` (
 -- Dumping data for table `loan_requstes`
 --
 
-INSERT INTO `loan_requstes` (`id`, `cust_id`, `amount`, `is_approved`, `un_approved`, `is_registered`, `date`) VALUES
-(20, 27, 1000, 1, 0, 1, '2022-06-16'),
-(21, 27, 11000, 1, 0, 1, '2022-06-16'),
-(22, 27, 5000, 1, 0, 1, '2022-06-16'),
-(23, 30, 2000, 1, 0, 1, '2022-06-17'),
-(24, 27, 3000, 1, 0, 1, '2022-06-17'),
-(25, 31, 1000, 1, 0, 1, '2022-06-19'),
-(26, 31, 2000, 1, 0, 1, '2022-06-19'),
-(27, 32, 10000, 0, 1, 0, '2022-06-19'),
-(28, 32, 5000, 1, 0, 1, '2022-06-19');
+INSERT INTO `loan_requstes` (`id`, `cust_id`, `amount`, `description`, `photo`, `is_approved`, `un_approved`, `is_registered`, `date`) VALUES
+(20, 27, 1000, '', '', 1, 0, 1, '2022-06-16'),
+(21, 27, 11000, '', '', 1, 0, 1, '2022-06-16'),
+(22, 27, 5000, '', '', 1, 0, 1, '2022-06-16'),
+(23, 30, 2000, '', '', 1, 0, 1, '2022-06-17'),
+(24, 27, 3000, '', '', 1, 0, 1, '2022-06-17'),
+(25, 31, 1000, '', '', 1, 0, 1, '2022-06-19'),
+(26, 31, 2000, '', '', 1, 0, 1, '2022-06-19'),
+(27, 32, 10000, '', '', 0, 1, 0, '2022-06-19'),
+(28, 32, 5000, '', '', 1, 0, 1, '2022-06-19'),
+(29, 31, 2000, '', '2022-06-26 09:11:30Osu.jpeg', 0, 0, 0, '2022-06-26'),
+(30, 31, 5000, 'for car', '2022-06-26 09:12:48ku.jpg', 0, 0, 0, '2022-06-26');
 
 -- --------------------------------------------------------
 
@@ -324,13 +335,13 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `employer`
@@ -354,7 +365,7 @@ ALTER TABLE `loan_repay`
 -- AUTO_INCREMENT for table `loan_requstes`
 --
 ALTER TABLE `loan_requstes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `money`

@@ -6,12 +6,12 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $gender  = $_POST['gender'];
-
+    $age = $_POST['age'];
     $filename = $_FILES["uploadfile"]["name"];
     $filename = date('Y-m-d H:i:s').$filename;
 	$tempname = $_FILES["uploadfile"]["tmp_name"];
 	$folder = "./image/" . $filename;
-    if (!empty($username) && !empty($password) && !empty($phone) && is_numeric($phone) && !is_numeric($username)  && !is_numeric($name)) {
+    if (!empty($username) && !empty($password) && !empty($phone) && is_numeric($phone) && is_numeric($age) && !is_numeric($username)  && !is_numeric($name)) {
         $selectu = mysqli_query($conn, "SELECT * FROM `accounts` WHERE `username` = '$username'");
         $duchk = mysqli_num_rows($selectu);
         if ($duchk != 0) {
@@ -23,8 +23,8 @@ if (isset($_POST['submit'])) {
                 $query = mysqli_query($conn, $sql3);
                 $row = mysqli_fetch_array($query);
                 $acc_id = $row['id'];
-                $sql4 = "INSERT INTO `customer`(`acc_id`, `name`, `gender`, `phone`,   `photo`) 
-                VALUES ('$acc_id','$name','$gender',' $phone', '$filename')";
+                $sql4 = "INSERT INTO `customer`(`acc_id`, `name`, `gender`, `age`, `phone`,   `photo`) 
+                VALUES ('$acc_id','$name','$gender', '$age', '$phone', '$filename')";
                 if (mysqli_query($conn, $sql4)) {
                     echo "<script>alert('Succeesfully Registered')</script>";
                     echo "<script>window.location.replace('login.php')</script>";
@@ -87,11 +87,15 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="username">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="text" class="form-control" name="age" id="age" placeholder="Age" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
