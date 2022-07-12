@@ -25,6 +25,40 @@ Micro-finance Business TemplateMo
 https://templatemo.com/tm-545-finance-business
 
 -->
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #3e8e41
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+  </style>
 </head>
 
 <body>
@@ -67,7 +101,7 @@ https://templatemo.com/tm-545-finance-business
         <!-- <a class="navbar-brand" href="index.php">
           <img src="/dist/img/logo.jpeg" alt="Logo">
         </a> -->
-    <a class="brand-link text-center " href="index.php"><img src="dist/img/rsz_logo.png" alt="Logo" class="img-circle" width="50%"></a>
+        <a class="brand-link text-center " href="index.php"><img src="dist/img/rsz_logo.png" alt="Logo" class="img-circle" width="50%"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,9 +115,30 @@ https://templatemo.com/tm-545-finance-business
             <li class="nav-item">
               <a class="nav-link" href="bb/about.html">About Us</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="bb/servicesss.html">Our Services</a>
-            </li>
+            <div class="dropdown">
+              <li class="nav-item" id="service"> </li>
+              <a class="nav-link" href="#">Our Services</a>
+              <div class="dropdown-content">
+                <ul>
+                  <ul>
+                    <li><a class="" href="bb/Compulsory Saving.html">Compulsory Saving</a></li>
+                    <li><a class="" href="bb/Voluntary Saving.html">Voluntary Saving</a></li>
+                    <li><a class="" href="bb/Special saving.html">Special saving</a></li>
+                    <li><a class="" href="bb/Fixed Term Deposits.html">Fixed Term Deposits</a></li>
+                  </ul>
+                  </li>
+                  <ul>
+                    <li><a class="" href="bb/Micro Business Loan.html">Micro Business Loan</a></li>
+                    <li><a class="" href="bb/Agricultural Loan.html">Agricultural Loan</a></li>
+                    <li><a class="" href="bb/Small Business Loan.html">Small Business Loan</a></li>
+                    <li><a class="" href="bb/WEDP Loan.html">WEDP Loan</a></li>
+                    <li><a class="" href="bb/General Loan.html">General Loan</a></li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+
+
             <li class="nav-item">
               <a class="nav-link" href="bb/contact.html">Contact Us</a>
             </li>

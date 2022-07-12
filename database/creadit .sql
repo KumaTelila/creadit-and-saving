@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 26, 2022 at 09:32 AM
+-- Generation Time: Jul 02, 2022 at 07:04 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.15
 
@@ -57,7 +57,12 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `is_manager`, `is_admin`, 
 (103, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 0, 0, 0, 1, 0),
 (105, 'Girma1', '686bba45f5491a606a3b5f4692fe2dca', 0, 0, 0, 1, 0),
 (109, 'sisay', 'd11a5b51cdf3967f9e4dd61f93d6dd4d', 0, 0, 0, 1, 0),
-(110, 'User21', '85b7a29973177a3644ac4481753f2863', 0, 0, 0, 1, 0);
+(110, 'User21', '85b7a29973177a3644ac4481753f2863', 0, 0, 0, 1, 0),
+(112, 'rah', '202cb962ac59075b964b07152d234b70', 0, 0, 0, 1, 0),
+(113, 'jkdfslk', '069059b7ef840f0c74a814ec9237b6ec', 0, 0, 0, 1, 0),
+(114, 'ab21', '1aba8fa84ed47add9192604ec5721944', 0, 0, 0, 1, 0),
+(115, 'abc2', '63872b5565b2179bd72ea9c339192543', 0, 0, 0, 1, 0),
+(116, 'rah2', '94a6fd8f7835df4d2f77585177927051', 0, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -70,6 +75,7 @@ CREATE TABLE `customer` (
   `acc_id` int(11) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
   `gender` char(1) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `balance` int(100) DEFAULT 0,
   `date` date NOT NULL DEFAULT current_timestamp(),
@@ -80,16 +86,17 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `acc_id`, `name`, `gender`, `phone`, `balance`, `date`, `photo`) VALUES
-(27, 95, 'Rahel Assefa', 'F', ' 251965582658', 2000, '2022-06-15', 'photo'),
-(28, 96, 'Girma Assefa', 'M', ' 09852455622', 0, '2022-06-15', 'photo'),
-(29, 98, 'Kuma Telila', 'M', ' 965582658', 0, '2022-06-16', 'photo'),
-(30, 101, 'Tola Lema', 'M', ' 251965582658', 0, '2022-06-17', 'photo'),
-(31, 102, 'Baley Desu', 'M', ' 965582658', -3000, '2022-06-19', '2022-06-24 17:14:45Screenshot from 2022-06-23 18-03-53.png'),
-(32, 103, 'user bb', 'F', ' 09655826584', 5000, '2022-06-19', 'photo'),
-(34, 105, 'Rahel Girma1', 'F', ' 09655826584', 0, '2022-06-24', 'photo'),
-(38, 109, 'sisay lll', 'M', ' 965582658', 0, '2022-06-24', '2022-06-24 16:13:57php-certificate.jpg'),
-(39, 110, 'Kuma Telila User21', 'M', ' 0965582658', 0, '2022-06-24', '2022-06-24 17:26:2820210107_183106.jpg');
+INSERT INTO `customer` (`id`, `acc_id`, `name`, `gender`, `age`, `phone`, `balance`, `date`, `photo`) VALUES
+(27, 95, 'Rahel Assefa', 'F', 0, ' 251965582658', 2000, '2022-06-15', 'photo'),
+(28, 96, 'Girma Assefa', 'M', 0, ' 09852455622', 0, '2022-06-15', 'photo'),
+(29, 98, 'Kuma Telila', 'M', 0, ' 965582658', 0, '2022-06-16', 'photo'),
+(30, 101, 'Tola Lema', 'M', 0, ' 251965582658', 0, '2022-06-17', 'photo'),
+(31, 102, 'Baley Desu', 'M', 0, ' 965582658', -3000, '2022-06-19', '2022-06-24 17:14:45Screenshot from 2022-06-23 18-03-53.png'),
+(32, 103, 'user bb', 'F', 0, ' 09655826584', 5000, '2022-06-19', 'photo'),
+(34, 105, 'Rahel Girma1', 'F', 0, ' 09655826584', 0, '2022-06-24', 'photo'),
+(38, 109, 'sisay lll', 'M', 0, ' 965582658', 0, '2022-06-24', '2022-06-24 16:13:57php-certificate.jpg'),
+(39, 110, 'Kuma Telila User21', 'M', 0, ' 0965582658', 0, '2022-06-24', '2022-06-24 17:26:2820210107_183106.jpg'),
+(41, 116, 'Rahel Girma', 'F', 25, '09655826584', 0, '2022-06-30', '2022-06-30 18:48:37Screenshot from 2022-06-23 18-03-53.png');
 
 -- --------------------------------------------------------
 
@@ -175,6 +182,25 @@ INSERT INTO `loan_repay` (`id`, `cust_id`, `amount`, `is_registered`, `date`) VA
 CREATE TABLE `loan_requstes` (
   `id` int(11) NOT NULL,
   `cust_id` bigint(11) NOT NULL,
+  `kebeleId` varchar(100) DEFAULT NULL,
+  `lsubCity` varchar(100) DEFAULT NULL,
+  `lworeda` varchar(100) DEFAULT NULL,
+  `lkebele` varchar(100) DEFAULT NULL,
+  `lhouseNo` int(11) DEFAULT NULL,
+  `jsubCity` varchar(100) DEFAULT NULL,
+  `jworeda` varchar(100) DEFAULT NULL,
+  `jkebele` varchar(100) DEFAULT NULL,
+  `jhouseNo` int(11) DEFAULT NULL,
+  `jPhoneNo` int(11) DEFAULT NULL,
+  `postNo` int(11) DEFAULT NULL,
+  `edu` varchar(100) DEFAULT NULL,
+  `job` varchar(100) DEFAULT NULL,
+  `salary` decimal(10,0) DEFAULT NULL,
+  `maritial` varchar(100) DEFAULT NULL,
+  `family` int(11) DEFAULT NULL,
+  `house` varchar(100) DEFAULT NULL,
+  `room` int(11) DEFAULT NULL,
+  `round` int(11) DEFAULT NULL,
   `amount` int(11) NOT NULL,
   `description` text NOT NULL,
   `photo` varchar(250) NOT NULL,
@@ -188,18 +214,20 @@ CREATE TABLE `loan_requstes` (
 -- Dumping data for table `loan_requstes`
 --
 
-INSERT INTO `loan_requstes` (`id`, `cust_id`, `amount`, `description`, `photo`, `is_approved`, `un_approved`, `is_registered`, `date`) VALUES
-(20, 27, 1000, '', '', 1, 0, 1, '2022-06-16'),
-(21, 27, 11000, '', '', 1, 0, 1, '2022-06-16'),
-(22, 27, 5000, '', '', 1, 0, 1, '2022-06-16'),
-(23, 30, 2000, '', '', 1, 0, 1, '2022-06-17'),
-(24, 27, 3000, '', '', 1, 0, 1, '2022-06-17'),
-(25, 31, 1000, '', '', 1, 0, 1, '2022-06-19'),
-(26, 31, 2000, '', '', 1, 0, 1, '2022-06-19'),
-(27, 32, 10000, '', '', 0, 1, 0, '2022-06-19'),
-(28, 32, 5000, '', '', 1, 0, 1, '2022-06-19'),
-(29, 31, 2000, '', '2022-06-26 09:11:30Osu.jpeg', 0, 0, 0, '2022-06-26'),
-(30, 31, 5000, 'for car', '2022-06-26 09:12:48ku.jpg', 0, 0, 0, '2022-06-26');
+INSERT INTO `loan_requstes` (`id`, `cust_id`, `kebeleId`, `lsubCity`, `lworeda`, `lkebele`, `lhouseNo`, `jsubCity`, `jworeda`, `jkebele`, `jhouseNo`, `jPhoneNo`, `postNo`, `edu`, `job`, `salary`, `maritial`, `family`, `house`, `room`, `round`, `amount`, `description`, `photo`, `is_approved`, `un_approved`, `is_registered`, `date`) VALUES
+(20, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1000, '', '', 1, 0, 1, '2022-06-16'),
+(21, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 11000, '', '', 1, 0, 1, '2022-06-16'),
+(22, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000, '', '', 1, 0, 1, '2022-06-16'),
+(23, 30, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2000, '', '', 1, 0, 1, '2022-06-17'),
+(24, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3000, '', '', 1, 0, 1, '2022-06-17'),
+(25, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1000, '', '', 1, 0, 1, '2022-06-19'),
+(26, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2000, '', '', 1, 0, 1, '2022-06-19'),
+(27, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10000, '', '', 0, 1, 0, '2022-06-19'),
+(28, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000, '', '', 1, 0, 1, '2022-06-19'),
+(29, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2000, '', '2022-06-26 09:11:30Osu.jpeg', 0, 0, 0, '2022-06-26'),
+(30, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000, 'for car', '2022-06-26 09:12:48ku.jpg', 0, 0, 0, '2022-06-26'),
+(31, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 600000, 'creadit 1', '2022-07-01 20:21:26Screenshot from 2022-06-29 21-28-39.png', 0, 1, 0, '2022-07-01'),
+(32, 31, '10', 'Adama', '03', '01', 170, 'Adama, Oromia', '03', '01', 171, 958471521, 4560, 'Degree', 'president', '50000', 'Maried', 12, 'Tenant', 3, 2, 80000, 'pppppp', '2022-07-01 21:14:55Screenshot from 2022-06-23 18-03-53.png', 0, 0, 0, '2022-07-01');
 
 -- --------------------------------------------------------
 
@@ -335,13 +363,13 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `employer`
@@ -365,7 +393,7 @@ ALTER TABLE `loan_repay`
 -- AUTO_INCREMENT for table `loan_requstes`
 --
 ALTER TABLE `loan_requstes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `money`

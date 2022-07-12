@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="drop.css">
 
     <title>Finance Business - About Page</title>
 
@@ -65,32 +65,51 @@ https://templatemo.com/tm-545-finance-business
     <header class="">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="../index.php">
-                    <h2>Finance Business</h2>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <a class="navbar-brand" href="index.php">
+            <img src="/dist/img/logo.jpeg" alt="Logo">
+          </a> -->
+                <a class="brand-link text-center " href="index.php"><img src="../dist/img/rsz_logo.png" alt="Logo" class="img-circle" width="50%"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link" href="../index.php">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="about.html">About Us</a>
+                            <a class="nav-link " href="about.html">About Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="servicesss.html">Our Services</a>
-                        </li>
-                        <li class="nav-item">
+                        <div class="dropdown">
+                            <li class="nav-item" id="service"> </li>
+                            <a class="nav-link" href="#">Our Services</a>
+                            <div class="dropdown-content">
+                                <ul>
+                                    <ul>
+                                        <li><a class="" href="Compulsory Saving.html">Compulsory Saving</a></li>
+                                        <li><a class="" href="Voluntary Saving.html">Voluntary Saving</a></li>
+                                        <li><a class="" href="Special saving.html">Special saving</a></li>
+                                        <li><a class="" href="Fixed Term Deposits.html">Fixed Term Deposits</a></li>
+                                    </ul>
+                                    </li>
+                                    <ul>
+                                        <li><a class="" href="Micro Business Loan.html">Micro Business Loan</a></li>
+                                        <li><a class="" href="Agricultural Loan.html">Agricultural Loan</a></li>
+                                        <li><a class="" href="Small Business Loan.html">Small Business Loan</a></li>
+                                        <li><a class="" href="WEDP Loan.html">WEDP Loan</a></li>
+                                        <li><a class="" href="General Loan.html">General Loan</a></li>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                        <li class="nav-item ">
                             <a class="nav-link" href="contact.html">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="news.php">News</a>
-                          </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">News</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../login.php">Login</a>
                         </li>
@@ -113,40 +132,34 @@ https://templatemo.com/tm-545-finance-business
             </div>
         </div>
     </div>
-<?php 
-function news(){
-include '../connect.php';
-    $sql = "SELECT * FROM news";
-    $result = mysqli_query($conn, $sql);
-    echo "<div class= 'row mt-10'>";
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "<div class='col-md-6 pt-10'>";
-            echo "<div class='card'>";
-            echo "<img class='product-image' src='../dist/img/logo1.png' alt='Card image cap' style='
+    <?php
+    function news()
+    {
+        include '../connect.php';
+        $sql = "SELECT * FROM news";
+        $result = mysqli_query($conn, $sql);
+        echo "<div class= 'row mt-10'>";
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='col-md-6 pt-10'>";
+                echo "<div class='card'>";
+                echo "<img class='product-image' src='../dist/img/logo1.png' alt='Card image cap' style='
             margin-top: 10px;
             width: 50%;
         '>";
-            echo "<div class='card-body'>";
-            echo "<h5 class='card-title'>".$row['title']."</h5>";
-            echo "<p class='card-text'>".$row['description']."</p>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-}
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
+                echo "<p class='card-text'>" . $row['description'] . "</p>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+        }
+        echo "</div>";
+    }
+    news();
+    ?>
 
-}
-echo "</div>";
-}
-news();
-?>
-    <div class="more-info about-info">
-        <div class="container">
-            <div class="row">
-               
-            </div>
-        </div>
-    </div>
     </div>
     <!-- Footer Starts Here -->
     </footer>
@@ -175,10 +188,10 @@ news();
 
     <script language="text/Javascript">
         cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-        function clearField(t) {                   //declaring the array outside of the
-            if (!cleared[t.id]) {                      // function makes it static and global
-                cleared[t.id] = 1;  // you could use true and false, but that's more typing
-                t.value = '';         // with more chance of typos
+        function clearField(t) { //declaring the array outside of the
+            if (!cleared[t.id]) { // function makes it static and global
+                cleared[t.id] = 1; // you could use true and false, but that's more typing
+                t.value = ''; // with more chance of typos
                 t.style.color = '#fff';
             }
         }
